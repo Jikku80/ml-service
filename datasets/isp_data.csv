@@ -1,0 +1,5 @@
+Tenure,MonthlyCharges,TotalCharges,Gender,SeniorCitizen,InternetService,TechSupport,StreamingTV,Contract,PaperlessBilling,PaymentMethod
+31,84.45,2617.95,Male,0,Fiber optic,Yes,Yes,One year,Yes,Credit card (automatic)
+59,29.30,1748.60,Female,1,DSL,No,No,Two year,No,Bank transfer (automatic)
+70,100.35,7021.30,Male,1,Fiber optic,Yes,Yes,Two year,No,Credit card (automatic)
+10,35.45,361.05,Female,0,DSL,No,No,Month-to-month,Yes,Electronic check

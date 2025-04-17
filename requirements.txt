@@ -1,0 +1,39 @@
+# Web framework and ASGI server
+fastapi==0.115.11
+uvicorn==0.34.0
+starlette==0.46.1
+
+# Data validation and settings
+pydantic==2.10.6
+
+# File handling and security
+python-multipart==0.0.20
+python-dotenv==1.1.0
+
+# Machine Learning / Deep Learning
+scikit-learn==1.6.1
+xgboost==3.0.0
+torch==2.6.0
+mlxtend==0.23.4
+
+# Data manipulation and analysis
+numpy==1.26.4
+pandas==2.2.3
+statsmodels==0.14.4
+nltk==3.9.1
+
+# Visualization
+matplotlib==3.8.3
+seaborn==0.13.2
+pillow==11.1.0
+
+# Template rendering
+jinja2==3.1.6
+
+# PDF handling
+pypdf==5.4.0
+
+# Database handling
+sqlalchemy==2.0.39
+
+joblib==1.4.2

@@ -1,0 +1,1001 @@
+age,years_at_company,salary,performance_rating,department,job_level,leave
+50,14,82238.44,2,Customer Support,3,0
+44,10,79615.15,3,Product Management,5,0
+57,7,72595.61,5,Product Management,1,1
+33,9,62874.15,5,Sales,4,0
+46,0,50804.47,4,Product Management,4,1
+37,14,75517.21,3,IT,4,0
+24,4,50245.03,2,IT,4,0
+46,11,75878.49,2,Human Resources,2,1
+30,9,65455.17,4,Customer Support,4,0
+29,14,65322.2,3,Product Management,1,0
+57,1,63174.4,2,Engineering,4,1
+50,14,84459.96,2,IT,2,1
+55,9,77593.19,4,Human Resources,1,0
+42,12,77408.81,2,Research and Development,5,0
+45,9,71982.08,5,Marketing,1,0
+50,14,81095.51,5,Marketing,1,0
+46,6,59621.62,3,Operations,3,1
+38,7,59166.09,3,Finance,3,0
+54,10,75964.17,1,Operations,4,1
+28,8,58882.61,4,Marketing,2,0
+54,6,67468.33,3,Finance,4,0
+43,10,65518.97,3,Finance,1,1
+56,4,67331.19,3,Operations,1,1
+36,14,75921.04,2,Engineering,2,1
+34,2,59435.24,4,IT,5,0
+53,3,68004.96,5,Operations,5,0
+36,10,76114.6,4,Research and Development,2,0
+27,11,68618.67,4,Engineering,4,0
+41,13,71779.6,4,Research and Development,1,1
+54,0,70753.93,1,Customer Support,3,0
+34,8,60648.48,3,Sales,1,0
+58,0,66466.78,3,Finance,2,1
+45,14,74084.39,1,Customer Support,4,1
+33,13,66650.86,2,Customer Support,3,0
+58,0,68678.11,5,Customer Support,1,1
+22,2,54724.51,2,Operations,5,1
+47,5,72336.48,3,Product Management,3,0
+38,14,67251.04,5,Operations,4,0
+55,5,78590.25,1,Finance,1,1
+27,12,63552.71,3,Operations,4,0
+57,2,74937.56,4,IT,4,0
+54,7,77027.42,2,Engineering,1,1
+32,11,62812.09,2,Human Resources,3,0
+28,11,68385.93,2,Product Management,1,0
+23,0,52799.41,1,Sales,1,1
+56,2,73909.11,3,Operations,4,0
+45,5,70588.2,3,Finance,1,0
+29,3,63585.35,4,Marketing,3,1
+46,2,64285.05,3,Finance,5,1
+57,0,58827.15,4,Human Resources,1,0
+35,4,59187.37,3,Product Management,1,1
+54,11,72437.51,3,Product Management,3,1
+43,6,70198.05,5,Customer Support,3,0
+29,10,57008.52,3,Customer Support,2,0
+42,13,80822.17,1,Operations,5,0
+40,3,68860.14,3,Human Resources,1,1
+38,11,68882.69,1,IT,5,1
+45,12,78070.0,1,Engineering,5,1
+52,2,63252.4,1,Marketing,3,1
+39,8,64515.51,2,Product Management,2,0
+24,7,53261.4,3,Engineering,2,0
+23,9,67448.01,1,Finance,1,0
+30,10,67248.87,2,Customer Support,2,0
+56,1,77894.62,1,Finance,5,1
+28,8,56083.67,4,Sales,3,0
+44,14,78474.98,4,Marketing,2,0
+23,6,51499.34,2,Sales,5,1
+43,9,76506.9,2,Sales,1,0
+27,14,63034.4,1,IT,5,0
+26,6,57325.91,4,Finance,5,0
+53,3,77818.85,4,Research and Development,5,1
+51,2,63803.82,1,IT,3,1
+49,9,69640.9,2,Human Resources,2,0
+22,14,73306.51,2,Research and Development,1,1
+22,12,64886.48,5,Operations,3,0
+33,9,73756.75,3,Finance,5,0
+43,8,66099.98,1,Product Management,4,0
+26,11,62682.97,2,IT,2,0
+42,6,64593.76,5,Research and Development,2,0
+31,5,50031.03,5,Sales,4,0
+55,3,77706.37,2,Operations,1,1
+26,12,57820.69,4,Research and Development,2,0
+49,10,77539.19,3,Operations,4,0
+54,0,72162.56,5,IT,3,1
+58,11,82196.64,2,Product Management,3,1
+50,12,76457.51,4,Engineering,2,0
+56,6,72959.39,2,Product Management,2,0
+47,13,74035.0,2,Product Management,3,0
+28,3,51785.19,3,Product Management,5,1
+57,8,83132.36,5,Customer Support,5,0
+57,9,85891.53,3,Sales,1,0
+56,3,61627.66,2,Customer Support,1,1
+53,7,74402.46,4,Customer Support,1,0
+34,6,68355.21,1,Marketing,3,0
+51,0,63870.13,1,Research and Development,5,1
+40,0,76269.93,4,IT,4,1
+40,11,72960.21,4,IT,3,0
+37,4,61877.37,5,Customer Support,3,0
+33,8,57296.74,5,IT,1,0
+35,14,72846.59,2,Human Resources,5,0
+56,6,83068.33,4,IT,1,0
+31,9,66522.91,4,Sales,1,0
+59,6,68302.69,1,Finance,2,1
+48,9,71082.56,2,Finance,5,1
+50,4,71227.53,5,Finance,1,0
+43,3,57191.22,1,IT,1,1
+25,3,51907.78,5,Operations,4,1
+48,9,71932.76,2,Human Resources,3,0
+24,12,63907.43,2,Marketing,4,0
+49,7,70056.71,5,Product Management,1,0
+22,2,55463.43,4,Operations,1,1
+46,7,70444.37,1,IT,5,0
+27,9,63620.46,5,IT,4,0
+56,2,70062.96,4,Human Resources,1,1
+39,14,80755.72,1,Finance,5,1
+24,6,62796.35,1,Human Resources,3,0
+33,9,76449.01,2,Finance,4,1
+57,9,73458.51,2,Research and Development,4,0
+49,11,68871.95,3,Finance,1,1
+30,0,51143.97,5,Marketing,4,1
+34,11,64768.5,3,Sales,5,1
+27,1,52482.23,3,Operations,5,0
+46,1,57841.35,1,Marketing,1,1
+39,14,74447.92,1,Operations,3,1
+42,9,71704.61,3,Sales,1,1
+34,0,56567.93,2,IT,1,1
+56,14,81456.86,4,Customer Support,1,1
+26,14,66722.58,5,Product Management,3,0
+44,4,70620.76,3,Operations,1,1
+42,13,78064.28,1,Finance,1,0
+34,3,63558.07,2,Customer Support,4,1
+52,7,67376.79,2,Operations,2,1
+55,5,73074.31,4,Finance,1,1
+26,13,73756.31,3,Sales,1,1
+38,14,80445.23,3,Human Resources,4,1
+55,5,76889.13,2,Operations,2,1
+39,13,68157.09,2,Marketing,4,0
+59,0,70082.05,4,Customer Support,2,0
+38,4,62026.65,1,Human Resources,2,1
+38,11,77098.36,4,IT,5,0
+55,5,62162.79,3,Finance,3,0
+32,2,57554.4,1,Sales,3,1
+37,7,68301.13,1,Research and Development,3,0
+53,2,63939.36,3,Finance,5,1
+53,1,60671.68,5,Human Resources,5,1
+39,11,73020.53,2,Product Management,5,1
+43,4,73914.63,4,Finance,2,1
+55,0,79408.18,2,Sales,5,0
+48,8,71791.87,3,Engineering,5,0
+38,9,63499.42,4,Engineering,1,0
+29,0,55390.64,2,Research and Development,4,1
+44,13,75178.18,2,Product Management,5,0
+47,13,80834.25,3,Human Resources,4,0
+39,9,70855.18,3,Human Resources,3,1
+36,8,62144.57,1,Research and Development,1,0
+43,9,73380.87,4,Engineering,1,0
+38,12,79435.71,3,Engineering,1,1
+39,14,77908.2,4,Research and Development,2,0
+29,7,56313.77,1,Operations,5,1
+27,3,55548.31,2,Finance,2,0
+27,4,54414.55,4,Engineering,3,1
+51,14,73205.79,1,Finance,3,1
+52,7,73869.83,3,Marketing,4,0
+36,5,67539.36,1,IT,3,0
+23,14,56769.19,5,Sales,4,0
+26,5,71083.5,2,Engineering,4,1
+40,3,54862.29,1,Customer Support,2,1
+35,5,62740.42,5,Marketing,3,1
+57,12,77240.82,2,Engineering,2,0
+26,6,59236.99,2,Sales,4,0
+23,12,60587.1,5,Engineering,1,0
+38,8,68304.53,3,Research and Development,3,1
+51,14,80348.65,4,Engineering,3,1
+56,0,68446.97,4,IT,5,1
+29,10,61527.42,3,IT,5,0
+58,4,75941.64,3,IT,3,1
+35,9,65129.78,2,Finance,1,1
+39,7,69540.57,3,Finance,5,0
+59,0,69592.09,1,Engineering,1,1
+54,14,89382.19,2,Customer Support,5,0
+27,5,64573.61,2,Operations,4,0
+36,14,67595.68,5,Operations,1,0
+51,6,75640.77,3,Customer Support,1,0
+25,5,62549.47,2,Sales,2,1
+26,10,60968.63,5,Engineering,4,0
+45,3,66802.64,5,Marketing,5,0
+50,14,86071.26,3,Human Resources,3,1
+57,3,69132.06,2,Sales,3,1
+48,4,62111.07,2,Engineering,3,1
+33,9,62098.69,5,Product Management,2,0
+46,0,63546.97,4,Human Resources,5,1
+58,7,79628.83,2,Research and Development,1,1
+49,14,71792.77,5,Sales,1,0
+43,10,80934.14,1,IT,5,0
+42,9,82693.46,5,Marketing,1,0
+30,9,66619.76,4,Sales,1,0
+47,8,70449.92,2,Sales,3,1
+59,1,65762.3,2,Human Resources,3,1
+55,10,69986.17,4,Customer Support,3,0
+45,8,69196.32,4,Research and Development,5,0
+45,0,67902.3,2,Human Resources,4,1
+42,0,51775.47,1,Product Management,4,1
+41,5,66049.26,1,Product Management,1,1
+53,12,84148.25,3,Operations,3,0
+40,13,70131.69,5,Human Resources,5,0
+51,7,69765.71,3,Product Management,2,0
+22,13,65174.07,4,Finance,1,0
+51,5,79590.1,3,IT,4,1
+22,7,50962.44,2,Product Management,4,0
+54,6,69110.92,4,Engineering,2,0
+28,12,72111.02,3,Operations,3,1
+29,5,48628.38,1,Human Resources,5,1
+24,2,47889.36,2,Customer Support,3,0
+53,7,77064.99,3,Operations,4,0
+58,5,70713.83,2,Research and Development,2,0
+28,0,49313.22,5,Customer Support,3,1
+40,3,69836.85,1,Customer Support,5,1
+41,10,75291.27,2,Sales,2,0
+24,6,63926.05,1,Research and Development,2,1
+56,3,67649.8,2,Product Management,4,1
+45,0,62311.83,1,Engineering,2,1
+38,13,77516.51,1,Finance,2,0
+46,6,72086.95,4,Human Resources,2,1
+50,12,70999.15,2,Customer Support,5,0
+32,5,52852.04,1,Product Management,5,0
+46,5,70759.32,2,Human Resources,4,1
+44,4,74102.67,1,Finance,5,0
+28,9,70852.47,5,IT,1,0
+47,4,69418.07,2,Finance,4,1
+22,2,41151.39,5,Product Management,4,1
+47,12,67879.92,4,IT,1,0
+56,5,69007.8,2,Customer Support,5,1
+54,9,73121.81,3,Human Resources,5,0
+55,8,76110.05,2,Engineering,2,0
+30,8,57770.44,5,Product Management,3,0
+46,6,60097.22,3,Finance,3,0
+58,11,74561.1,2,Operations,4,0
+40,4,68647.41,4,Engineering,3,1
+38,9,69087.54,4,Research and Development,3,0
+29,14,78229.36,5,Marketing,1,0
+44,4,70169.61,1,Product Management,2,1
+46,11,76295.9,3,Human Resources,2,0
+47,14,78017.39,1,Product Management,2,0
+42,5,63327.97,2,Finance,5,1
+28,8,61036.1,3,Customer Support,5,1
+39,14,72729.82,4,Customer Support,3,1
+39,10,62474.2,4,Marketing,5,0
+55,2,72005.17,5,Research and Development,3,0
+47,6,76720.87,1,IT,4,1
+50,5,60477.44,1,Operations,5,1
+39,0,60835.25,2,Engineering,3,1
+55,13,84948.15,3,Finance,5,1
+34,1,55413.56,5,Research and Development,4,1
+37,7,72546.74,4,Product Management,1,0
+31,13,60090.9,5,Engineering,1,1
+51,0,56707.01,3,Marketing,5,1
+35,7,59469.42,5,Human Resources,1,0
+22,4,49745.44,1,Human Resources,1,1
+45,3,70421.61,3,Finance,5,0
+55,8,74430.06,4,Marketing,4,0
+29,3,55118.11,3,Human Resources,5,1
+31,10,68486.53,2,Research and Development,1,0
+47,8,74276.88,5,IT,5,0
+44,0,58885.65,1,Customer Support,3,1
+41,9,61004.96,3,Customer Support,2,0
+39,13,73386.88,1,Finance,3,1
+53,2,64973.95,1,Sales,1,1
+25,13,61981.9,5,Engineering,2,0
+32,8,56530.85,5,Engineering,1,0
+24,8,56419.72,2,Sales,4,1
+30,14,72292.72,3,Customer Support,2,0
+45,11,83551.02,3,Customer Support,5,1
+47,1,61911.94,1,Marketing,2,1
+53,13,80618.94,5,Marketing,3,0
+24,7,61723.34,5,Research and Development,5,0
+54,5,82084.44,3,Finance,4,0
+54,10,79028.09,3,Research and Development,5,0
+46,4,70575.04,2,Human Resources,4,1
+48,5,69974.26,5,Product Management,2,1
+52,6,71206.63,2,Finance,2,0
+53,10,77648.14,2,Sales,4,1
+23,13,63737.64,5,Sales,5,0
+33,6,65762.67,2,Finance,4,0
+45,12,65037.27,3,Operations,3,0
+51,6,74190.11,4,Sales,4,0
+36,13,71239.77,5,Engineering,5,0
+43,3,67093.2,4,Finance,3,0
+38,11,66876.47,1,Product Management,2,0
+22,5,53599.34,2,Customer Support,5,0
+33,3,60139.01,3,Sales,3,1
+33,6,68183.02,3,Operations,2,1
+44,9,68715.16,2,IT,2,0
+50,3,60759.93,5,Operations,5,1
+32,3,48005.97,2,Product Management,4,1
+43,10,70387.94,5,Engineering,5,0
+41,5,59765.21,3,Customer Support,1,1
+26,2,49417.07,2,Sales,5,1
+56,0,62143.28,1,Research and Development,4,1
+39,14,86077.73,4,Finance,1,1
+38,12,62717.93,5,Operations,3,0
+28,2,52750.13,4,Sales,2,1
+24,3,59686.12,1,Sales,1,1
+41,3,56066.15,4,Product Management,5,1
+23,7,60082.13,3,Human Resources,5,0
+38,7,75814.11,2,Engineering,3,1
+46,0,61074.7,4,IT,1,1
+29,10,59665.12,1,Human Resources,4,0
+53,14,80261.44,4,Sales,4,0
+54,9,76312.51,1,IT,5,0
+51,0,61597.63,5,Product Management,4,1
+47,5,71660.58,2,Research and Development,2,1
+32,12,63106.17,3,Human Resources,3,1
+27,8,70559.9,2,Product Management,4,0
+41,13,75289.63,3,Operations,3,1
+41,3,70257.39,3,Sales,1,1
+35,10,69820.67,2,Human Resources,4,0
+44,11,67842.12,5,Finance,3,0
+39,5,61853.51,2,Marketing,3,1
+43,4,59860.86,3,Sales,5,1
+50,5,72821.39,1,Human Resources,4,0
+51,4,74164.4,4,Finance,5,1
+25,11,67865.79,4,Research and Development,4,0
+45,1,64622.26,4,Marketing,2,1
+55,3,75735.49,2,Research and Development,2,1
+57,5,69058.95,3,Human Resources,5,0
+39,7,59684.8,5,Customer Support,1,1
+56,9,79470.15,2,Engineering,4,0
+35,13,71803.37,2,Marketing,5,0
+26,5,49747.54,4,Human Resources,5,0
+35,7,64247.89,1,Customer Support,4,0
+23,6,55687.8,1,Product Management,4,1
+23,2,47901.65,5,Engineering,5,1
+22,7,49907.71,3,Human Resources,2,0
+24,5,64730.02,2,Human Resources,5,0
+31,11,65203.75,4,IT,3,0
+33,0,62668.43,1,Finance,4,1
+49,8,64316.38,4,Human Resources,5,0
+49,14,84528.46,4,Engineering,3,0
+41,1,55313.29,5,Research and Development,5,0
+26,0,56146.24,1,Customer Support,3,1
+35,11,69196.71,1,Marketing,3,0
+44,11,75262.67,4,Marketing,5,0
+37,1,62563.87,2,Operations,5,1
+22,6,51732.92,5,Product Management,5,0
+43,14,79850.34,2,Marketing,3,1
+31,13,70978.41,2,Customer Support,2,1
+38,9,69005.5,4,Finance,3,1
+29,8,67753.27,4,Marketing,1,1
+22,2,57195.92,4,Engineering,2,1
+27,14,76576.86,1,Marketing,1,0
+46,12,76703.0,1,Customer Support,3,1
+25,1,60675.91,5,Research and Development,4,1
+59,2,74487.0,1,Operations,3,1
+32,0,59505.86,1,Engineering,5,0
+36,0,51609.89,5,Sales,3,1
+50,8,64781.3,1,Operations,1,1
+53,0,64984.84,3,Customer Support,3,1
+29,13,67326.48,2,Human Resources,2,1
+30,2,60111.98,2,Marketing,4,1
+50,9,74292.01,1,Research and Development,4,1
+26,1,45846.63,4,Operations,3,0
+44,5,67854.85,2,Marketing,4,0
+42,6,71583.14,5,Customer Support,4,0
+36,8,65201.27,4,Engineering,3,1
+36,3,60055.52,2,Marketing,5,1
+25,4,59265.37,4,IT,3,1
+50,14,91278.88,2,Human Resources,4,0
+51,1,71394.47,2,Marketing,1,1
+34,3,60457.17,4,Research and Development,2,0
+34,14,77572.01,1,IT,2,1
+57,3,78487.07,1,Finance,4,1
+34,6,62624.28,5,IT,4,0
+30,9,66498.19,2,Sales,1,1
+29,7,55018.12,1,Customer Support,2,1
+48,4,73349.25,4,Operations,4,0
+31,8,58935.26,2,Product Management,3,0
+57,9,88613.48,1,Research and Development,3,0
+55,0,61310.9,5,Finance,1,1
+43,4,71622.92,3,Marketing,2,1
+30,13,76116.98,5,Human Resources,5,0
+46,1,67334.9,2,Operations,3,0
+32,6,54252.34,4,Marketing,3,0
+25,9,64906.48,5,Human Resources,4,0
+58,0,67632.68,4,Customer Support,3,0
+30,7,54814.17,4,Human Resources,5,1
+23,11,56388.81,5,Human Resources,4,0
+48,4,71156.46,3,Product Management,4,1
+24,5,49216.92,2,IT,4,0
+23,5,64862.86,4,Human Resources,4,0
+57,4,74595.1,5,IT,5,0
+52,14,80846.8,1,Marketing,4,0
+38,11,62931.43,4,IT,3,0
+37,13,68830.45,5,Sales,4,0
+22,8,51964.28,5,Finance,4,0
+27,5,59460.25,1,Engineering,5,1
+37,11,67954.42,4,Product Management,2,0
+35,3,55147.03,2,Marketing,1,1
+42,1,57551.27,3,Sales,1,0
+30,0,50759.51,2,Customer Support,4,0
+39,6,57494.9,3,Sales,3,0
+36,5,53030.35,4,Engineering,1,1
+59,1,76591.69,5,Product Management,3,0
+51,7,81371.06,3,Research and Development,4,1
+35,8,66801.33,5,Marketing,3,0
+23,10,56317.12,4,Human Resources,2,0
+31,8,70065.34,2,Operations,1,0
+54,3,64882.9,5,Operations,4,1
+24,2,55508.61,1,Customer Support,1,1
+34,4,60697.4,4,Operations,1,1
+36,3,55741.53,5,Operations,4,1
+33,11,67822.37,2,IT,5,1
+27,12,55622.67,3,Sales,2,1
+44,2,69719.94,2,Sales,2,1
+46,1,53922.0,3,Finance,2,0
+52,7,70007.53,1,Sales,3,1
+42,8,60295.09,4,Engineering,3,0
+28,11,72605.86,1,Marketing,5,0
+50,3,74741.4,4,Sales,4,0
+59,6,79885.39,5,Product Management,3,0
+28,10,67367.83,4,Research and Development,5,0
+43,4,65350.55,3,Customer Support,5,0
+59,14,82628.43,5,Engineering,2,0
+44,9,73287.69,5,Marketing,5,0
+47,1,58532.02,5,Research and Development,5,0
+39,4,63423.45,3,Sales,1,1
+32,14,72896.46,5,Marketing,4,0
+47,13,74283.59,4,Finance,2,0
+56,8,71575.99,5,IT,4,0
+50,5,72472.98,1,Finance,1,1
+38,7,65416.71,1,Operations,1,1
+22,1,44004.32,2,Marketing,2,1
+42,11,69966.38,3,Marketing,2,0
+29,10,56952.89,1,Customer Support,4,0
+44,7,67621.36,5,Product Management,3,0
+26,11,74066.94,5,Product Management,1,0
+44,10,72682.68,1,Engineering,5,1
+45,2,60487.54,4,IT,3,1
+36,2,66494.06,3,Product Management,4,1
+26,4,62928.52,2,Finance,4,1
+38,14,76594.77,1,Product Management,1,1
+23,14,63886.6,4,Human Resources,1,1
+46,9,70745.83,2,Engineering,2,0
+42,3,71278.09,4,Human Resources,2,0
+32,9,73996.36,1,Finance,2,1
+30,8,67301.02,2,Research and Development,1,1
+43,3,53852.43,4,Finance,5,1
+53,2,70037.03,3,Human Resources,2,1
+53,13,83578.69,1,Operations,4,0
+39,4,62256.54,4,Human Resources,3,0
+43,5,74536.73,3,IT,1,0
+43,11,74498.44,3,Customer Support,2,1
+52,14,76743.22,3,Human Resources,4,0
+34,5,73502.05,3,Engineering,3,1
+44,12,79377.17,4,IT,1,0
+58,14,84031.24,1,Marketing,4,1
+26,2,48974.29,1,Customer Support,4,1
+56,9,70532.32,5,Sales,3,0
+48,1,70389.77,1,Customer Support,5,1
+30,3,63984.47,2,IT,4,0
+38,13,72415.4,1,Product Management,2,1
+41,10,73671.21,3,Sales,5,0
+25,14,68876.43,5,Operations,4,0
+41,9,70623.42,5,Operations,5,0
+42,9,74662.95,4,Operations,4,0
+41,0,57740.71,3,Engineering,5,1
+37,9,80291.0,4,Customer Support,4,0
+45,1,71530.6,4,Engineering,4,1
+40,0,67812.3,3,Engineering,5,0
+33,13,69907.82,5,Human Resources,4,0
+51,6,78032.79,1,Product Management,1,0
+39,14,75900.3,3,Operations,3,0
+54,0,60172.69,4,Finance,4,1
+48,14,83737.05,3,Finance,1,1
+47,4,65978.88,1,Sales,4,0
+31,1,59058.69,5,Research and Development,1,0
+40,9,64723.35,3,Sales,2,0
+26,12,57998.97,5,Human Resources,2,0
+26,3,41968.91,2,Engineering,4,1
+56,0,66628.86,4,Engineering,1,1
+57,4,67503.44,4,Engineering,2,0
+51,5,66110.09,4,Customer Support,2,0
+37,5,59365.6,2,Human Resources,1,1
+34,5,61893.16,3,Operations,4,1
+39,9,64763.94,3,Research and Development,1,0
+42,3,69355.62,2,Engineering,3,1
+41,7,63859.22,5,Operations,2,0
+47,11,77212.32,5,Human Resources,2,0
+42,1,68271.78,5,Operations,3,1
+44,9,68213.59,3,Engineering,1,1
+42,11,66679.83,1,IT,5,1
+54,1,64963.27,1,Human Resources,1,1
+38,7,74146.62,5,Product Management,5,1
+55,11,77022.29,1,IT,1,1
+55,5,73261.58,2,Customer Support,1,0
+31,4,61521.29,1,Human Resources,2,1
+31,1,52079.92,3,Research and Development,5,1
+43,11,72603.97,4,Customer Support,3,0
+31,2,53859.99,3,Research and Development,1,1
+53,6,73142.26,4,Sales,4,1
+43,14,80829.3,5,Customer Support,4,0
+49,13,76040.94,2,Product Management,4,0
+47,0,55684.05,2,Research and Development,1,1
+24,7,55192.69,3,Operations,4,0
+44,8,62419.32,3,Engineering,2,0
+40,4,54846.16,4,IT,1,1
+57,4,73503.26,5,Customer Support,1,1
+36,13,64904.43,4,Engineering,4,0
+23,6,58088.61,3,Product Management,5,0
+24,10,60326.12,5,Engineering,4,0
+58,3,69981.76,3,Research and Development,1,0
+33,10,69106.48,5,Marketing,5,0
+42,13,74029.05,5,IT,2,0
+25,11,62564.28,3,Finance,5,0
+46,2,69928.65,1,Customer Support,4,1
+46,3,61973.14,5,Research and Development,1,1
+59,1,73482.21,3,Product Management,4,1
+32,1,56173.0,5,Operations,2,1
+43,2,70029.85,4,Customer Support,4,0
+51,9,72214.81,2,Operations,1,1
+42,2,61490.58,4,Customer Support,2,1
+39,9,62789.35,1,Finance,5,1
+32,13,79074.39,3,Sales,3,0
+54,3,67554.53,3,Research and Development,4,1
+27,8,62986.55,4,IT,4,0
+22,7,62339.23,5,Human Resources,3,0
+35,3,58609.57,4,Finance,1,0
+30,2,61296.29,3,Human Resources,3,1
+48,1,66730.89,4,Human Resources,5,0
+29,13,68764.68,3,Marketing,4,1
+46,7,69682.77,2,Finance,1,1
+40,13,73979.88,1,Human Resources,4,0
+41,12,74084.9,1,Human Resources,3,1
+40,14,66641.54,5,Research and Development,5,0
+57,7,74189.13,1,Customer Support,1,0
+54,7,78149.81,5,Research and Development,3,0
+35,13,67735.82,1,Human Resources,4,0
+25,11,65641.56,1,Operations,5,0
+51,11,80995.68,3,Engineering,3,0
+42,14,68870.33,5,Operations,3,0
+54,4,74930.45,5,Customer Support,1,0
+30,3,55410.44,4,IT,1,0
+40,9,70205.24,4,Research and Development,5,0
+43,7,68112.33,1,IT,5,0
+25,6,61672.7,4,Marketing,4,0
+25,5,53020.01,3,Human Resources,1,1
+22,7,53345.59,1,Marketing,2,0
+38,12,67941.15,3,Customer Support,4,0
+22,8,58814.82,5,Sales,5,0
+56,7,62412.83,4,Customer Support,1,1
+34,12,61750.3,1,Finance,1,1
+29,10,62075.16,5,Research and Development,5,0
+30,7,65877.23,5,Customer Support,1,0
+38,7,71191.2,1,Operations,5,0
+32,13,69431.84,3,Customer Support,3,0
+34,14,67457.97,4,Operations,3,1
+33,7,55931.43,5,Human Resources,5,0
+33,12,73106.24,4,Human Resources,2,0
+26,7,57288.14,1,Product Management,3,1
+44,13,83061.1,2,Marketing,4,0
+51,0,69984.2,4,Marketing,2,1
+58,2,76660.17,1,Finance,1,1
+33,9,76495.49,3,Customer Support,1,0
+23,14,72150.92,3,Product Management,3,0
+34,9,72634.84,2,Product Management,3,1
+30,8,61493.72,3,Research and Development,5,1
+23,12,61913.27,3,Marketing,2,0
+38,8,58514.51,1,Sales,5,0
+36,9,63772.15,5,Engineering,5,0
+52,8,78277.3,4,Product Management,5,0
+39,3,68936.62,3,Customer Support,5,0
+30,4,60311.81,4,Sales,2,1
+53,2,73755.97,3,Operations,4,0
+36,8,56903.46,2,Customer Support,3,1
+57,11,76034.07,1,Research and Development,2,0
+49,4,66478.91,1,Human Resources,1,1
+41,2,63147.06,5,Customer Support,2,1
+39,11,72682.13,1,Customer Support,5,1
+29,1,62131.71,4,Engineering,4,1
+59,0,69639.76,5,Research and Development,4,0
+47,10,75590.94,3,Sales,3,1
+27,10,63297.14,2,Marketing,5,0
+58,9,72106.68,4,Operations,5,1
+56,6,74628.76,1,Operations,1,1
+50,12,76929.01,3,Engineering,4,0
+38,12,70908.48,5,Finance,2,0
+43,4,67486.22,3,Customer Support,3,0
+24,9,63714.13,2,Human Resources,1,1
+42,13,78243.83,4,Product Management,5,0
+32,6,55791.92,5,IT,3,1
+34,14,71831.33,2,Research and Development,3,1
+57,2,74051.66,2,IT,1,1
+45,9,75775.54,3,Customer Support,5,0
+42,7,67849.28,4,Research and Development,3,0
+48,4,65161.47,2,Product Management,3,1
+33,5,63040.25,4,IT,5,1
+38,7,64041.76,4,Human Resources,1,0
+33,5,60876.91,4,Research and Development,4,0
+53,5,65637.04,2,Finance,4,0
+59,10,82698.94,3,Finance,3,1
+38,2,57373.66,5,Engineering,3,1
+39,11,73105.61,4,Human Resources,5,0
+56,14,85226.08,1,Operations,4,1
+38,0,61967.78,5,Finance,2,0
+53,5,56798.06,5,IT,3,0
+24,5,68198.72,5,IT,4,0
+23,8,61800.35,3,Operations,1,0
+51,14,85546.33,5,IT,5,0
+29,4,51302.18,4,Engineering,1,1
+22,3,50903.82,1,Finance,2,1
+35,3,62065.59,3,Marketing,3,0
+29,2,61983.77,2,Human Resources,5,1
+40,10,79402.18,2,Research and Development,1,0
+55,9,75817.76,2,Customer Support,2,0
+47,12,67410.83,4,Customer Support,2,0
+24,7,55055.3,3,Human Resources,5,1
+22,0,48645.86,1,Engineering,5,1
+34,4,58967.69,1,Product Management,1,1
+44,13,68085.67,2,Operations,2,0
+57,7,85760.83,2,Finance,2,0
+49,13,81590.94,4,Marketing,5,0
+45,14,81801.05,5,Research and Development,3,0
+44,7,82798.3,2,Operations,4,0
+52,13,74178.53,1,Operations,1,1
+52,0,70679.41,2,Finance,5,0
+47,1,69275.48,2,Product Management,1,1
+27,4,52335.65,4,Finance,1,0
+50,11,74635.12,3,Operations,1,1
+48,1,61112.3,4,Research and Development,4,0
+57,1,68702.03,1,Marketing,4,1
+58,0,73724.86,2,Product Management,2,1
+50,0,60788.0,5,Finance,5,1
+34,4,63052.38,1,IT,4,1
+32,0,57988.51,1,IT,5,1
+41,2,63288.75,3,Product Management,4,0
+58,9,77982.46,4,Human Resources,1,0
+56,14,77149.98,2,Human Resources,3,1
+28,8,63099.59,4,Marketing,2,1
+37,8,59869.52,1,Customer Support,3,1
+43,0,64740.69,5,Finance,2,0
+30,7,65779.27,4,Marketing,2,0
+24,11,61282.94,1,IT,4,0
+42,11,81823.48,3,Operations,3,0
+34,8,67572.0,5,Marketing,4,0
+31,13,71448.61,5,Customer Support,5,0
+59,7,79016.42,2,Marketing,3,0
+46,2,69065.37,1,IT,4,1
+45,12,77190.31,4,IT,2,0
+59,0,69291.6,4,Sales,4,1
+37,14,70290.16,4,Operations,3,0
+51,8,71819.63,2,IT,5,0
+27,6,60009.28,4,IT,1,0
+33,10,74245.1,5,Operations,4,0
+34,6,64778.96,3,Sales,1,1
+44,8,73842.59,5,Research and Development,3,1
+25,7,58983.73,4,Operations,4,1
+47,3,58284.06,2,Finance,1,0
+26,7,60104.43,4,Human Resources,1,1
+38,10,70153.5,2,Human Resources,4,0
+28,9,57314.29,5,Operations,5,0
+29,7,56802.97,4,Finance,4,1
+32,10,72215.92,1,Finance,1,0
+47,0,59005.93,2,IT,5,1
+41,3,55054.71,2,Marketing,5,1
+42,13,70403.4,5,Engineering,2,0
+35,9,65649.1,3,Human Resources,5,0
+29,11,58929.66,5,Marketing,3,0
+54,0,64853.78,1,Research and Development,4,1
+56,11,81942.77,3,Sales,2,0
+33,10,70616.14,2,Operations,2,0
+27,3,56097.24,4,Customer Support,3,1
+50,10,81806.05,3,Research and Development,5,0
+37,1,54525.0,2,Product Management,5,1
+29,13,62692.56,1,Research and Development,3,0
+38,10,73154.26,4,Engineering,2,0
+43,12,71934.71,2,Finance,4,0
+58,11,79996.46,4,Research and Development,2,0
+42,7,65550.25,3,IT,5,1
+48,8,74343.03,5,Human Resources,3,0
+34,12,67208.3,3,Research and Development,2,0
+22,8,55762.29,5,IT,1,0
+24,3,54577.19,2,IT,1,1
+39,12,68138.61,4,IT,5,0
+41,4,71393.55,2,Sales,1,1
+47,12,69275.84,4,Human Resources,4,0
+44,9,73435.82,5,Customer Support,2,0
+22,0,54287.62,2,IT,5,1
+50,3,60298.76,3,Finance,5,1
+56,11,88916.93,2,Product Management,3,0
+40,12,75896.37,2,Sales,5,0
+42,13,72547.12,4,Operations,2,1
+41,14,67406.46,1,Research and Development,3,1
+49,13,78568.23,1,IT,3,1
+25,9,61555.71,3,Operations,3,0
+57,1,73048.21,5,Operations,2,1
+25,2,39875.37,5,Research and Development,4,1
+44,12,80239.06,5,Product Management,5,0
+27,4,53167.9,5,IT,5,1
+41,2,65728.08,3,Engineering,4,1
+49,11,78896.87,1,IT,5,0
+34,6,57256.03,2,Marketing,2,0
+51,13,75646.64,3,Marketing,1,0
+57,6,78171.09,5,Operations,5,0
+29,0,48050.07,2,IT,2,1
+53,10,67502.68,2,Engineering,1,0
+38,10,67376.13,1,Human Resources,4,1
+46,10,84501.98,5,Human Resources,5,0
+59,0,79478.34,4,Finance,1,0
+45,1,79049.59,3,IT,1,0
+44,9,74329.62,1,Sales,2,0
+50,8,75107.93,5,Operations,4,0
+24,0,57291.04,5,Product Management,1,1
+38,2,65687.8,2,Customer Support,4,1
+53,3,68030.17,4,Research and Development,3,1
+35,9,66142.0,1,IT,2,1
+25,7,63951.92,1,Engineering,1,1
+40,4,66876.03,1,Finance,5,1
+48,5,71102.73,1,Marketing,4,1
+52,3,67485.22,4,Customer Support,2,1
+43,2,59589.88,3,Engineering,2,1
+37,6,64513.81,3,Human Resources,3,0
+39,3,60653.61,1,Engineering,4,1
+32,4,60716.94,3,Marketing,4,0
+38,5,70088.74,5,Research and Development,3,0
+54,13,75657.79,2,Finance,1,0
+40,5,62838.81,4,Human Resources,1,0
+34,3,59183.4,3,Operations,5,0
+41,12,74622.37,1,IT,1,0
+29,9,62659.53,5,Customer Support,2,0
+38,1,67567.99,2,Engineering,4,0
+48,0,60933.2,4,Engineering,3,0
+24,9,69528.21,2,Engineering,4,1
+45,9,72096.22,2,Research and Development,3,0
+48,12,84828.55,3,Customer Support,4,0
+56,14,78860.58,2,Finance,5,0
+55,5,78449.56,1,Finance,3,1
+57,10,83568.38,4,Finance,2,0
+50,3,70757.38,3,Customer Support,4,0
+55,13,82202.95,1,Operations,5,0
+49,0,64718.9,1,Research and Development,1,1
+57,2,69220.79,1,Finance,2,1
+57,8,74573.08,1,Research and Development,2,1
+48,5,71102.26,2,Engineering,3,0
+42,14,76751.71,4,Human Resources,5,1
+30,10,66489.28,2,Sales,3,1
+49,0,74326.71,2,Operations,4,1
+44,14,78698.9,4,Sales,1,0
+26,10,71525.07,2,Customer Support,1,0
+32,1,55495.98,2,Operations,2,1
+59,14,76497.9,2,Marketing,1,1
+48,13,78033.87,3,Customer Support,2,1
+38,8,69988.26,1,Operations,4,0
+49,0,61570.92,5,Engineering,1,0
+39,7,64398.02,2,Marketing,3,0
+59,9,85313.09,4,Marketing,2,0
+58,14,80604.74,1,Finance,5,0
+25,5,48632.48,5,Sales,3,1
+45,3,62095.24,3,Sales,2,1
+22,5,51491.09,5,Sales,5,0
+26,0,55713.52,3,Customer Support,5,1
+41,2,57305.7,3,Engineering,4,1
+26,0,47574.25,2,Operations,1,1
+42,12,68872.95,2,Sales,4,0
+45,8,68036.25,5,Operations,4,0
+37,0,61347.07,1,Product Management,5,1
+30,5,60876.06,1,Product Management,5,0
+44,0,76926.3,4,Research and Development,3,1
+51,8,61891.85,4,Human Resources,5,0
+38,6,59671.5,5,Operations,2,0
+58,5,70618.48,1,Product Management,1,1
+53,9,80316.22,3,Engineering,2,1
+31,14,68414.91,1,Product Management,2,0
+49,10,72957.59,3,Product Management,4,0
+45,7,69304.98,1,Operations,1,0
+40,2,63112.17,2,Sales,2,0
+22,12,49821.26,1,Engineering,2,0
+50,14,79016.88,5,Human Resources,1,0
+50,6,73167.45,5,Engineering,5,1
+47,0,59469.66,3,Operations,2,1
+22,0,56138.47,3,Human Resources,5,1
+24,14,67601.14,5,Product Management,5,0
+53,9,76903.18,1,Engineering,5,0
+43,8,78293.1,3,Research and Development,4,0
+28,13,73658.78,1,Sales,5,1
+36,2,60219.37,3,Sales,5,0
+51,8,72121.49,1,Marketing,4,0
+36,11,73703.48,4,Product Management,1,0
+39,1,61963.26,4,Operations,5,0
+50,2,67039.98,3,Engineering,3,1
+35,7,63566.14,3,Finance,4,0
+32,9,61911.95,3,Marketing,3,0
+51,10,77078.68,1,Engineering,4,0
+52,11,78528.15,2,Research and Development,5,0
+36,8,57697.59,2,Marketing,5,0
+53,9,84598.2,4,Sales,1,0
+56,4,75343.25,3,Customer Support,4,0
+30,14,64409.96,4,Marketing,5,0
+38,6,58691.75,2,IT,4,0
+58,4,82949.05,2,Research and Development,4,0
+34,10,62761.83,3,Engineering,1,0
+23,13,61239.56,4,Finance,2,0
+32,14,80386.9,2,Customer Support,4,0
+47,6,76606.41,2,Marketing,1,0
+59,8,77991.55,5,IT,1,0
+51,12,77235.86,4,Product Management,5,0
+34,10,59370.35,5,Research and Development,4,0
+53,6,75589.37,4,IT,2,0
+58,3,66957.23,1,Human Resources,5,0
+43,5,56686.87,5,Sales,5,0
+53,2,70727.69,2,Product Management,1,1
+50,6,76556.0,5,Sales,2,0
+23,7,60846.34,3,Human Resources,4,1
+33,10,58822.14,5,Engineering,3,0
+53,12,73416.58,4,IT,3,0
+42,2,61779.6,3,Marketing,4,1
+56,5,79674.52,3,Sales,2,1
+56,2,73148.75,5,Customer Support,5,0
+31,2,58224.44,3,Research and Development,3,0
+23,9,60619.52,5,Operations,3,0
+46,3,71272.97,3,Human Resources,2,1
+49,4,69494.51,3,Engineering,5,0
+42,11,77704.28,2,Marketing,4,0
+59,8,77407.54,3,Research and Development,3,1
+39,10,64205.46,3,Customer Support,5,0
+26,6,66408.32,1,Research and Development,3,1
+46,8,71475.78,1,Marketing,4,1
+22,14,61257.27,4,Operations,2,0
+38,12,70104.25,4,Marketing,3,0
+49,7,65159.93,2,Customer Support,5,0
+34,1,49726.36,4,Product Management,2,1
+32,7,65693.99,4,IT,3,1
+43,3,64130.26,1,Research and Development,4,1
+37,13,69241.7,3,Marketing,5,0
+48,4,69239.16,1,Sales,3,1
+41,4,65466.87,2,Human Resources,1,1
+52,6,74910.84,5,Sales,4,0
+33,0,57285.81,1,Marketing,2,1
+51,12,76470.7,2,Human Resources,4,0
+55,10,73767.11,4,Product Management,2,0
+59,7,67988.93,3,Marketing,5,0
+51,7,70185.92,4,Finance,2,0
+49,0,57728.6,4,Sales,5,1
+47,5,63484.44,4,Marketing,2,0
+59,14,87755.35,5,Human Resources,2,0
+45,2,72002.86,4,Operations,4,1
+44,0,63565.25,2,Engineering,1,1
+55,8,75311.7,5,Human Resources,1,1
+39,2,62369.81,1,Operations,4,1
+47,10,68304.63,5,Research and Development,2,0
+34,8,48376.22,3,Marketing,4,0
+28,8,54655.38,3,Engineering,2,1
+37,6,60930.55,5,Human Resources,5,0
+38,0,67450.89,5,Human Resources,3,1
+34,8,70488.12,4,Operations,4,0
+29,8,62691.5,5,Customer Support,3,1
+59,14,77042.37,3,Research and Development,4,0
+24,12,65454.26,2,Research and Development,5,0
+59,7,66280.87,3,Product Management,2,0
+24,10,66661.45,4,Finance,1,0
+52,12,75343.93,1,Finance,1,0
+52,13,81419.38,5,IT,2,0
+41,6,73969.69,5,Sales,2,1
+41,3,66139.51,5,Operations,1,0
+57,0,61590.02,2,IT,2,1
+48,12,77249.51,3,Sales,2,0
+34,6,67322.65,2,IT,1,1
+51,6,79094.43,5,Human Resources,2,0
+50,13,76074.89,5,Human Resources,5,0
+38,7,67914.94,3,Operations,4,1
+36,8,73671.82,5,Product Management,4,0
+51,0,64611.82,1,Finance,4,1
+30,5,56113.05,4,IT,1,0
+35,8,68966.62,1,Human Resources,3,1
+33,0,50231.5,3,Research and Development,3,1
+52,0,68313.33,1,Human Resources,2,1
+50,4,72714.3,2,IT,5,1
+29,8,63069.35,1,Finance,3,1
+32,7,65527.02,4,Product Management,3,1
+38,5,64979.23,3,Sales,4,0
+23,5,52053.8,3,IT,4,1
+34,3,64776.5,2,Product Management,1,1
+57,6,81449.82,4,Human Resources,3,0
+49,0,62981.2,2,Operations,2,1
+54,14,74058.05,3,Customer Support,1,0
+37,7,64413.58,4,Customer Support,5,0
+46,14,68754.83,2,Operations,1,1
+47,3,66549.4,2,Customer Support,3,1
+24,7,61830.43,1,Marketing,3,1
+33,8,67995.07,5,Customer Support,4,0
+47,14,82160.96,4,IT,4,0
+44,3,63817.22,1,Human Resources,1,1
+23,13,65226.73,4,IT,1,0
+43,4,68582.18,5,Product Management,1,0
+59,12,71938.73,4,Engineering,1,0
+42,7,67656.83,1,Product Management,2,1
+26,5,56613.42,4,Customer Support,3,1
+39,4,67075.81,4,Operations,3,0
+43,7,72162.46,2,Marketing,2,1
+46,3,67443.62,1,Research and Development,3,1
+26,9,56348.98,3,Customer Support,5,0
+59,12,93558.38,5,Operations,1,0
+23,0,55935.16,3,IT,4,1
+33,6,70073.91,2,Operations,5,1
+29,14,60663.35,4,Finance,2,0
+51,8,75391.74,2,Product Management,5,0
+55,6,65975.62,5,Human Resources,1,0
+22,8,59629.92,2,IT,2,1
+42,14,74531.82,5,Human Resources,1,1
+38,5,70628.98,2,Engineering,5,0
+38,5,56403.27,3,Sales,5,0
+36,5,48839.22,5,Human Resources,3,0
+34,0,52650.1,4,Human Resources,5,1
+43,9,67201.87,1,Finance,1,1
+55,9,75621.09,3,Finance,2,0
+39,3,64541.36,1,Sales,1,1
+35,13,69826.0,3,Customer Support,3,0
+56,0,64467.2,3,Research and Development,3,1
+41,3,65547.25,4,Research and Development,5,1
+38,6,65843.46,3,Product Management,2,0
+22,2,47653.57,2,Human Resources,5,0
+36,14,63065.27,4,Sales,3,0
+37,11,69995.35,2,Research and Development,3,0
+29,7,53913.47,3,Product Management,1,0
+23,7,58248.59,2,Operations,5,1
+37,2,57304.38,2,IT,2,1
+26,4,65131.9,3,Sales,5,0
+44,4,63486.9,2,Customer Support,5,1
+25,12,63570.77,2,Finance,2,0
+53,8,76049.99,5,Engineering,2,0
+41,5,64371.72,3,IT,2,0
+32,10,65571.96,1,Marketing,4,1
+25,0,48180.59,3,Operations,1,1
+41,5,71897.32,3,Operations,5,0
+24,8,68247.4,1,Sales,2,1
+30,6,66353.05,2,IT,3,0
+26,14,71261.73,1,Engineering,4,0
+55,12,79468.27,1,Finance,2,0
+35,9,65528.65,1,Engineering,1,0
+35,2,55721.04,4,Customer Support,2,1
+31,2,60681.19,5,Customer Support,1,0
+23,11,59946.52,1,Finance,2,1
+39,5,62559.51,3,Human Resources,2,1
+56,4,65055.07,3,Marketing,2,0
+37,5,60043.13,2,Customer Support,4,1
+34,3,65225.67,2,Product Management,2,1
+48,10,81821.35,4,Research and Development,4,0
+34,13,72055.13,3,Human Resources,1,1
+38,7,64145.21,2,Product Management,4,1
+49,5,68417.86,5,Engineering,4,0
+58,13,77339.44,5,Marketing,4,0
+58,12,74889.9,3,Product Management,4,0
+40,12,78643.2,3,Operations,4,0
+50,3,69565.92,1,Engineering,4,1
+23,5,56108.81,4,Finance,5,1
+40,6,65554.38,2,Human Resources,5,0
+50,3,62988.91,3,Marketing,4,0
+36,8,62237.82,4,Research and Development,1,0
+53,3,71839.13,2,Engineering,4,1
+50,11,86406.35,2,Marketing,5,1
+30,9,58830.93,2,Human Resources,3,1
+42,12,73062.39,3,Engineering,5,0
+53,1,59076.5,2,Finance,4,1
+45,0,52176.51,5,Research and Development,3,1
+45,0,65277.94,4,Finance,1,1
+54,10,89146.41,4,Research and Development,1,0
+49,4,64636.7,4,Product Management,4,0
+40,9,73150.96,3,Customer Support,2,1
+32,12,71418.36,1,Finance,5,0
+58,5,73722.76,5,Finance,1,0
+41,1,60069.16,2,Sales,4,1
+30,11,55425.67,2,Research and Development,1,1
+31,8,58145.74,4,Research and Development,4,0
+45,5,77057.1,3,Sales,2,0
+52,8,74923.55,5,Sales,5,0
+31,13,73189.58,5,IT,2,0
+45,13,77381.61,4,Finance,5,0
+57,5,75056.08,5,Customer Support,4,0
+46,0,64868.84,3,Sales,5,1
+37,10,74009.78,5,Sales,4,0
+42,7,67185.63,4,IT,1,1
+44,13,69740.43,5,Finance,4,0
+38,8,66583.03,5,Customer Support,5,0
+48,3,51060.94,3,Research and Development,3,1
+54,4,66418.63,3,Human Resources,5,0
+41,2,69277.21,5,Research and Development,1,1
+50,5,67781.32,2,Product Management,5,0
+26,11,69974.61,3,Customer Support,1,0
+29,6,54838.59,3,Product Management,3,0
+50,5,69687.94,2,Human Resources,3,1
+41,13,63686.46,5,Sales,1,0
+38,1,58026.87,5,Customer Support,4,0
+27,7,56538.51,3,Product Management,4,0
+56,4,70004.51,3,Engineering,4,0
+33,3,64678.62,4,Human Resources,3,1
+40,5,69098.64,3,Operations,5,0
+34,12,79430.24,3,Human Resources,3,0
+29,3,52426.2,2,IT,2,1
+47,6,75109.29,4,Finance,3,0
+33,14,82100.2,3,Research and Development,2,1
+48,10,73987.98,4,Sales,1,1
+49,0,61553.64,3,Research and Development,3,0
