@@ -1,4 +1,4 @@
-from app.routers import segment, churn, trend, pricing, inventory, basket, demand, sentiment, cv, retention, ecom_churn
+from app.routers import segment, churn, trend, pricing, inventory, basket, demand, sentiment, cv, retention, ecom_churn, customerpick, salaryprediction
 from app.middleware.auth import verify_api_key, rate_limit_middleware
 from app.core.config import settings
 
@@ -18,8 +18,6 @@ async def lifespan(app: FastAPI):
     # Startup logic
     logger.info(f"Starting FastAPI in {settings.ENVIRONMENT} environment")
     logger.info(f"Allowed origins: {settings.ALLOWED_ORIGINS}")
-    # Additional startup code: load ML models, establish connections, etc.
-    # yield control back to FastAPI
     yield
     # Shutdown logic
     logger.info("Shutting down application")
@@ -42,18 +40,6 @@ app.add_middleware(
     # allow_headers=["Authorization", "Content-Type"],
 )
 
-# app.include_router(segment.router)
-# app.include_router(churn.router)
-# app.include_router(trend.router)
-# app.include_router(pricing.router)
-# app.include_router(inventory.router)
-# app.include_router(basket.router)
-# app.include_router(demand.router)
-# app.include_router(sentiment.router)
-# app.include_router(cv.router)
-# app.include_router(retention.router)
-# app.include_router(ecom_churn.router)
-
 @app.get("/health")
 def health_check():
     return {"status": "healthy", 
@@ -71,3 +57,5 @@ app.include_router(sentiment.router, dependencies=[Depends(verify_api_key)])
 app.include_router(cv.router, dependencies=[Depends(verify_api_key)])
 app.include_router(retention.router, dependencies=[Depends(verify_api_key)])
 app.include_router(ecom_churn.router, dependencies=[Depends(verify_api_key)])
+app.include_router(customerpick.router, dependencies=[Depends(verify_api_key)])
+app.include_router(salaryprediction.router, dependencies=[Depends(verify_api_key)])

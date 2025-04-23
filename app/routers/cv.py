@@ -49,19 +49,47 @@ def extract_skills(text, skill_keywords):
     return found_skills
 
 def extract_experience_years(text):
-    """Extract years of experience from CV text."""
-    experience_patterns = [
+    """Extract years of experience from CV text, handling both numeric and text formats."""
+    # Dictionary to convert string numbers to integers
+    string_to_int = {
+        'one': 1, 'two': 2, 'three': 3, 'four': 4, 'five': 5,
+        'six': 6, 'seven': 7, 'eight': 8, 'nine': 9, 'ten': 10,
+        'eleven': 11, 'twelve': 12, 'thirteen': 13, 'fourteen': 14, 'fifteen': 15,
+        'sixteen': 16, 'seventeen': 17, 'eighteen': 18, 'nineteen': 19, 'twenty': 20
+    }
+    
+    # Patterns for numeric years
+    numeric_patterns = [
         r'(\d+)\+?\s*years?\s+(?:of\s+)?experience',
         r'experience\s*(?:of|:)?\s*(\d+)\+?\s*years?',
         r'worked\s*(?:for)?\s*(\d+)\+?\s*years?'
     ]
     
-    for pattern in experience_patterns:
+    # Patterns for text-based years
+    text_patterns = [
+        r'(one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty)\+?\s*years?\s+(?:of\s+)?experience',
+        r'experience\s*(?:of|:)?\s*(one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty)\+?\s*years?',
+        r'worked\s*(?:for)?\s*(one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty)\+?\s*years?'
+    ]
+    
+    years = []
+    
+    # Extract numeric years
+    for pattern in numeric_patterns:
         matches = re.findall(pattern, text, re.IGNORECASE)
-        if matches:
-            # Return the highest number of years mentioned
-            return max([int(year) for year in matches])
-    return None
+        for match in matches:
+            years.append(int(match))
+    
+    # Extract text-based years
+    for pattern in text_patterns:
+        matches = re.findall(pattern, text, re.IGNORECASE)
+        for match in matches:
+            match_lower = match.lower()
+            if match_lower in string_to_int:
+                years.append(string_to_int[match_lower])
+    
+    # Return the highest number of years mentioned, or None if no years were found
+    return max(years) if years else None
 
 @router.post("/upload-job-description/", response_model=dict)
 async def upload_job_description(
