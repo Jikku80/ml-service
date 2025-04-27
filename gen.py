@@ -1,175 +1,247 @@
 import pandas as pd
-import numpy as np
-from sklearn.preprocessing import MinMaxScaler
 import random
-from datetime import datetime, timedelta
-import string
 
-# Set seed for reproducibility
-np.random.seed(42)
-random.seed(42)
+# Define product templates
+products = [
+    {
+        'product_id': 'P001',
+        'name': 'Premium Set',
+        'category': 'Sports',
+        'cost': 32.55,
+        'current_price': 52.49,
+        'competitor_price': 63.14,
+        'sales_volume': 457,
+        'inventory_level': 120,
+        'seasonality_factor': 1.2
+    },
+    {
+        'product_id': 'P002',
+        'name': 'Luxury Set',
+        'category': 'Furniture',
+        'cost': 43.99,
+        'current_price': 89.49,
+        'competitor_price': 95.45,
+        'sales_volume': 565,
+        'inventory_level': 85,
+        'seasonality_factor': 1.0
+    },
+    {
+        'product_id': 'P003',
+        'name': 'Standard Set',
+        'category': 'Electronics',
+        'cost': 12.75,
+        'current_price': 24.99,
+        'competitor_price': 22.50,
+        'sales_volume': 1200,
+        'inventory_level': 300,
+        'seasonality_factor': 0.9
+    },
+    {
+        'product_id': 'P004',
+        'name': 'Budget Option',
+        'category': 'Clothing',
+        'cost': 8.50,
+        'current_price': 19.99,
+        'competitor_price': 17.99,
+        'sales_volume': 2500,
+        'inventory_level': 450,
+        'seasonality_factor': 1.1
+    },
+    {
+        'product_id': 'P005',
+        'name': 'Elite Package',
+        'category': 'Services',
+        'cost': 65.00,
+        'current_price': 129.99,
+        'competitor_price': 149.99,
+        'sales_volume': 89,
+        'inventory_level': 15,
+        'seasonality_factor': 1.3
+    }
+]
 
-# Number of records
-n_records = 500
+# Generate 100 random product entries
+data = [random.choice(products) for _ in range(100)]
 
-# Create basic employee data
-data = {
-    'employee_id': range(1001, 1001 + n_records),
-    'age': np.random.randint(22, 65, size=n_records),
-    'years_of_experience': np.random.randint(0, 40, size=n_records),
-    'education_level': np.random.choice(['High School', 'Bachelor', 'Master', 'PhD'], size=n_records, 
-                                       p=[0.2, 0.5, 0.2, 0.1]),
-    'job_role': np.random.choice(['Developer', 'Designer', 'Marketing', 'Sales', 'HR', 'Manager', 'Director', 'Data Scientist'], 
-                                size=n_records),
-    'department': np.random.choice(['Engineering', 'Design', 'Marketing', 'Sales', 'HR', 'Operations'], 
-                                  size=n_records),
-    'location': np.random.choice(['HQ', 'Remote', 'Office A', 'Office B', 'Office C'], size=n_records),
-    'performance_score': np.random.uniform(1, 5, size=n_records).round(1),
-    'weekly_working_hours': np.random.randint(20, 60, size=n_records),
-}
-
-# Create a DataFrame
+# Create DataFrame and save to Excel
 df = pd.DataFrame(data)
+df.to_excel("product_dataset_100_rows.xlsx", index=False)
 
-# Add more features
-# Years at company (less than experience)
-df['years_at_company'] = df.apply(lambda x: random.randint(0, min(x['years_of_experience'], 20)), axis=1)
+print("Excel file created: product_dataset_100_rows.xlsx")
 
-# Create previous companies count (between 0 and years_of_experience / 3)
-df['previous_companies'] = df.apply(lambda x: random.randint(0, max(1, int(x['years_of_experience'] / 3))), axis=1)
 
-# Number of direct reports (more for managers and directors)
-df['direct_reports'] = 0
-df.loc[df['job_role'] == 'Manager', 'direct_reports'] = np.random.randint(1, 10, size=len(df[df['job_role'] == 'Manager']))
-df.loc[df['job_role'] == 'Director', 'direct_reports'] = np.random.randint(5, 20, size=len(df[df['job_role'] == 'Director']))
+# import pandas as pd
+# import numpy as np
+# from sklearn.preprocessing import MinMaxScaler
+# import random
+# from datetime import datetime, timedelta
+# import string
 
-# Certifications (more for technical roles)
-df['certifications'] = 0
-technical_roles = ['Developer', 'Data Scientist']
-df.loc[df['job_role'].isin(technical_roles), 'certifications'] = np.random.randint(0, 5, size=len(df[df['job_role'].isin(technical_roles)]))
-df.loc[~df['job_role'].isin(technical_roles), 'certifications'] = np.random.randint(0, 3, size=len(df[~df['job_role'].isin(technical_roles)]))
+# # Set seed for reproducibility
+# np.random.seed(42)
+# random.seed(42)
 
-# Projects completed last year
-df['projects_completed'] = np.random.randint(0, 15, size=n_records)
+# # Number of records
+# n_records = 500
 
-# Gender
-df['gender'] = np.random.choice(['Male', 'Female', 'Non-binary'], size=n_records, p=[0.48, 0.48, 0.04])
+# # Create basic employee data
+# data = {
+#     'employee_id': range(1001, 1001 + n_records),
+#     'age': np.random.randint(22, 65, size=n_records),
+#     'years_of_experience': np.random.randint(0, 40, size=n_records),
+#     'education_level': np.random.choice(['High School', 'Bachelor', 'Master', 'PhD'], size=n_records, 
+#                                        p=[0.2, 0.5, 0.2, 0.1]),
+#     'job_role': np.random.choice(['Developer', 'Designer', 'Marketing', 'Sales', 'HR', 'Manager', 'Director', 'Data Scientist'], 
+#                                 size=n_records),
+#     'department': np.random.choice(['Engineering', 'Design', 'Marketing', 'Sales', 'HR', 'Operations'], 
+#                                   size=n_records),
+#     'location': np.random.choice(['HQ', 'Remote', 'Office A', 'Office B', 'Office C'], size=n_records),
+#     'performance_score': np.random.uniform(1, 5, size=n_records).round(1),
+#     'weekly_working_hours': np.random.randint(20, 60, size=n_records),
+# }
 
-# Language proficiency (1-5)
-df['language_proficiency'] = np.random.randint(1, 6, size=n_records)
+# # Create a DataFrame
+# df = pd.DataFrame(data)
 
-# Boolean fields
-df['has_mentor'] = np.random.choice([0, 1], size=n_records, p=[0.7, 0.3])
-df['is_manager'] = (df['job_role'].isin(['Manager', 'Director'])).astype(int)
-df['remote_work_pct'] = np.random.choice([0, 25, 50, 75, 100], size=n_records)
+# # Add more features
+# # Years at company (less than experience)
+# df['years_at_company'] = df.apply(lambda x: random.randint(0, min(x['years_of_experience'], 20)), axis=1)
 
-# Generate salary based on features with some randomness
-# Base salary components
-base_salary = 40000
-experience_factor = 2000  # per year
-education_bonus = {
-    'High School': 0,
-    'Bachelor': 10000,
-    'Master': 20000,
-    'PhD': 35000
-}
-role_bonus = {
-    'Developer': 15000,
-    'Designer': 12000,
-    'Marketing': 8000,
-    'Sales': 10000,
-    'HR': 5000,
-    'Manager': 25000,
-    'Director': 50000,
-    'Data Scientist': 20000
-}
-performance_bonus = 5000  # per point (1-5)
-department_factor = {
-    'Engineering': 1.2,
-    'Design': 1.1,
-    'Marketing': 1.0,
-    'Sales': 1.15,
-    'HR': 0.9,
-    'Operations': 0.95
-}
+# # Create previous companies count (between 0 and years_of_experience / 3)
+# df['previous_companies'] = df.apply(lambda x: random.randint(0, max(1, int(x['years_of_experience'] / 3))), axis=1)
 
-# Calculate salary
-df['salary'] = (
-    base_salary +
-    df['years_of_experience'] * experience_factor +
-    df['education_level'].map(education_bonus) +
-    df['job_role'].map(role_bonus) +
-    df['performance_score'] * performance_bonus +
-    df['certifications'] * 2000 +
-    df['direct_reports'] * 1000 +
-    df['projects_completed'] * 500
-) * df['department'].map(department_factor)
+# # Number of direct reports (more for managers and directors)
+# df['direct_reports'] = 0
+# df.loc[df['job_role'] == 'Manager', 'direct_reports'] = np.random.randint(1, 10, size=len(df[df['job_role'] == 'Manager']))
+# df.loc[df['job_role'] == 'Director', 'direct_reports'] = np.random.randint(5, 20, size=len(df[df['job_role'] == 'Director']))
 
-# Add some random noise to make it more realistic (±10%)
-noise = np.random.uniform(0.9, 1.1, size=n_records)
-df['salary'] = (df['salary'] * noise).round(-3)  # Round to nearest thousand
+# # Certifications (more for technical roles)
+# df['certifications'] = 0
+# technical_roles = ['Developer', 'Data Scientist']
+# df.loc[df['job_role'].isin(technical_roles), 'certifications'] = np.random.randint(0, 5, size=len(df[df['job_role'].isin(technical_roles)]))
+# df.loc[~df['job_role'].isin(technical_roles), 'certifications'] = np.random.randint(0, 3, size=len(df[~df['job_role'].isin(technical_roles)]))
 
-# Add missing values randomly to make the dataset more realistic
-for col in ['performance_score', 'previous_companies', 'projects_completed', 'language_proficiency']:
-    mask = np.random.random(len(df)) < 0.05  # 5% missing values
-    df.loc[mask, col] = np.nan
+# # Projects completed last year
+# df['projects_completed'] = np.random.randint(0, 15, size=n_records)
 
-# Create a date of hire that's consistent with years_at_company
-today = datetime.now()
-df['hire_date'] = df.apply(
-    lambda x: (today - timedelta(days=365 * x['years_at_company'] + random.randint(0, 364))).strftime('%Y-%m-%d'),
-    axis=1
-)
+# # Gender
+# df['gender'] = np.random.choice(['Male', 'Female', 'Non-binary'], size=n_records, p=[0.48, 0.48, 0.04])
 
-# Generate employee IDs with department prefix
-def generate_employee_id(row):
-    dept_prefix = ''.join([word[0] for word in row['department'].split()])  # Department initials
-    random_chars = ''.join(random.choices(string.ascii_uppercase + string.digits, k=4))
-    return f"{dept_prefix}-{random_chars}"
+# # Language proficiency (1-5)
+# df['language_proficiency'] = np.random.randint(1, 6, size=n_records)
 
-df['employee_id'] = df.apply(generate_employee_id, axis=1)
+# # Boolean fields
+# df['has_mentor'] = np.random.choice([0, 1], size=n_records, p=[0.7, 0.3])
+# df['is_manager'] = (df['job_role'].isin(['Manager', 'Director'])).astype(int)
+# df['remote_work_pct'] = np.random.choice([0, 25, 50, 75, 100], size=n_records)
 
-# Add some unique skills (more realistic for salary prediction)
-tech_skills = ['Python', 'Java', 'JavaScript', 'SQL', 'C#', 'React', 'AWS', 'Azure', 'Docker', 
-               'Kubernetes', 'TensorFlow', 'PyTorch', 'Excel', 'Tableau', 'PowerBI']
-design_skills = ['Photoshop', 'Illustrator', 'InDesign', 'Figma', 'Sketch', 'UI/UX', 'Animation', 
-                 'Video Editing', '3D Modeling', 'HTML/CSS']
-business_skills = ['Public Speaking', 'Project Management', 'Sales', 'Marketing', 'Customer Relations', 
-                   'Strategic Planning', 'Team Leadership', 'Negotiation', 'Financial Analysis', 'CRM']
+# # Generate salary based on features with some randomness
+# # Base salary components
+# base_salary = 40000
+# experience_factor = 2000  # per year
+# education_bonus = {
+#     'High School': 0,
+#     'Bachelor': 10000,
+#     'Master': 20000,
+#     'PhD': 35000
+# }
+# role_bonus = {
+#     'Developer': 15000,
+#     'Designer': 12000,
+#     'Marketing': 8000,
+#     'Sales': 10000,
+#     'HR': 5000,
+#     'Manager': 25000,
+#     'Director': 50000,
+#     'Data Scientist': 20000
+# }
+# performance_bonus = 5000  # per point (1-5)
+# department_factor = {
+#     'Engineering': 1.2,
+#     'Design': 1.1,
+#     'Marketing': 1.0,
+#     'Sales': 1.15,
+#     'HR': 0.9,
+#     'Operations': 0.95
+# }
 
-def assign_skills(row):
-    num_skills = random.randint(2, 5)
-    if row['job_role'] in ['Developer', 'Data Scientist']:
-        return random.sample(tech_skills, min(num_skills, len(tech_skills)))
-    elif row['job_role'] in ['Designer']:
-        return random.sample(design_skills, min(num_skills, len(design_skills)))
-    else:
-        return random.sample(business_skills, min(num_skills, len(business_skills)))
+# # Calculate salary
+# df['salary'] = (
+#     base_salary +
+#     df['years_of_experience'] * experience_factor +
+#     df['education_level'].map(education_bonus) +
+#     df['job_role'].map(role_bonus) +
+#     df['performance_score'] * performance_bonus +
+#     df['certifications'] * 2000 +
+#     df['direct_reports'] * 1000 +
+#     df['projects_completed'] * 500
+# ) * df['department'].map(department_factor)
 
-df['skills'] = df.apply(assign_skills, axis=1)
-df['skills_count'] = df['skills'].apply(len)
+# # Add some random noise to make it more realistic (±10%)
+# noise = np.random.uniform(0.9, 1.1, size=n_records)
+# df['salary'] = (df['salary'] * noise).round(-3)  # Round to nearest thousand
 
-# Convert skills list to comma-separated string for CSV output
-df['skills'] = df['skills'].apply(lambda x: ', '.join(x))
+# # Add missing values randomly to make the dataset more realistic
+# for col in ['performance_score', 'previous_companies', 'projects_completed', 'language_proficiency']:
+#     mask = np.random.random(len(df)) < 0.05  # 5% missing values
+#     df.loc[mask, col] = np.nan
 
-# Save to CSV
-df.to_csv('employee_salary_dataset.csv', index=False)
+# # Create a date of hire that's consistent with years_at_company
+# today = datetime.now()
+# df['hire_date'] = df.apply(
+#     lambda x: (today - timedelta(days=365 * x['years_at_company'] + random.randint(0, 364))).strftime('%Y-%m-%d'),
+#     axis=1
+# )
 
-# Save to Excel
-df.to_excel('employee_salary_dataset.xlsx', index=False)
+# # Generate employee IDs with department prefix
+# def generate_employee_id(row):
+#     dept_prefix = ''.join([word[0] for word in row['department'].split()])  # Department initials
+#     random_chars = ''.join(random.choices(string.ascii_uppercase + string.digits, k=4))
+#     return f"{dept_prefix}-{random_chars}"
 
-print(f"Dataset created with {n_records} records.")
-print("Columns:", df.columns.tolist())
-print("Sample rows:")
-print(df.head())
+# df['employee_id'] = df.apply(generate_employee_id, axis=1)
 
-# Print some statistics
-print("\nSalary Statistics:")
-print(df['salary'].describe())
+# # Add some unique skills (more realistic for salary prediction)
+# tech_skills = ['Python', 'Java', 'JavaScript', 'SQL', 'C#', 'React', 'AWS', 'Azure', 'Docker', 
+#                'Kubernetes', 'TensorFlow', 'PyTorch', 'Excel', 'Tableau', 'PowerBI']
+# design_skills = ['Photoshop', 'Illustrator', 'InDesign', 'Figma', 'Sketch', 'UI/UX', 'Animation', 
+#                  'Video Editing', '3D Modeling', 'HTML/CSS']
+# business_skills = ['Public Speaking', 'Project Management', 'Sales', 'Marketing', 'Customer Relations', 
+#                    'Strategic Planning', 'Team Leadership', 'Negotiation', 'Financial Analysis', 'CRM']
 
-print("\nCorrelation with Salary:")
-corr = df.select_dtypes(include=[np.number]).corr()['salary'].sort_values(ascending=False)
-print(corr)
+# def assign_skills(row):
+#     num_skills = random.randint(2, 5)
+#     if row['job_role'] in ['Developer', 'Data Scientist']:
+#         return random.sample(tech_skills, min(num_skills, len(tech_skills)))
+#     elif row['job_role'] in ['Designer']:
+#         return random.sample(design_skills, min(num_skills, len(design_skills)))
+#     else:
+#         return random.sample(business_skills, min(num_skills, len(business_skills)))
+
+# df['skills'] = df.apply(assign_skills, axis=1)
+# df['skills_count'] = df['skills'].apply(len)
+
+# # Convert skills list to comma-separated string for CSV output
+# df['skills'] = df['skills'].apply(lambda x: ', '.join(x))
+
+# # Save to CSV
+# df.to_csv('employee_salary_dataset.csv', index=False)
+
+# # Save to Excel
+# df.to_excel('employee_salary_dataset.xlsx', index=False)
+
+# print(f"Dataset created with {n_records} records.")
+# print("Columns:", df.columns.tolist())
+# print("Sample rows:")
+# print(df.head())
+
+# # Print some statistics
+# print("\nSalary Statistics:")
+# print(df['salary'].describe())
+
+# print("\nCorrelation with Salary:")
+# corr = df.select_dtypes(include=[np.number]).corr()['salary'].sort_values(ascending=False)
+# print(corr)
 
 # import pandas as pd
 # import numpy as np
