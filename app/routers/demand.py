@@ -4,10 +4,10 @@ from typing import List, Dict, Any, Optional, Union
 from fastapi import APIRouter, File, HTTPException, UploadFile, Depends, Query
 import numpy as np
 import pandas as pd
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 from sklearn.preprocessing import StandardScaler, OneHotEncoder, LabelEncoder
 from sklearn.compose import ColumnTransformer
-from sklearn.pipeline import Pipeline
+from sklearn.pipeline import FunctionTransformer, Pipeline
 from sklearn.impute import SimpleImputer, KNNImputer
 from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor
 from sklearn.linear_model import ElasticNet, Ridge
@@ -34,6 +34,8 @@ router = APIRouter(
 )
 
 class HistoricalDemand(BaseModel):
+    model_config = ConfigDict(extra="allow")
+
     date: str
     product_id: int
     quantity: float
@@ -44,15 +46,14 @@ class HistoricalDemand(BaseModel):
     # Allow for additional fields that might be present in input data
     additional_fields: Dict[str, Any] = Field(default_factory=dict)
 
-    class Config:
-        extra = "allow"  # Allow extra fields to be included
-
 class DemandData(BaseModel):
     historical_data: List[HistoricalDemand]
     user_id: str  # Added user_id field
     target_variable: Optional[str] = "quantity"
 
 class PredictionInput(BaseModel):
+    model_config = ConfigDict(extra="allow")
+
     product_id: int
     date: str
     price: float
@@ -61,9 +62,6 @@ class PredictionInput(BaseModel):
     weather_code: int
     # Allow additional fields that might be needed for prediction
     additional_fields: Dict[str, Any] = Field(default_factory=dict)
-
-    class Config:
-        extra = "allow"  # Allow extra fields
 
 class ModelMetrics(BaseModel):
     rmse: float
@@ -208,9 +206,10 @@ def create_feature_engineering_pipeline(df: pd.DataFrame, data_types: Dict[str, 
         ])
         transformers.append(('categorical', categorical_transformer, data_types["categorical"]))
     
-    # Handle boolean features
+    # Handle boolean features - FIXED: Convert to int before imputation
     if data_types["boolean"]:
         boolean_transformer = Pipeline(steps=[
+            ('to_int', FunctionTransformer(lambda x: x.astype(float))),  # Convert bool to float
             ('imputer', SimpleImputer(strategy='most_frequent')),
         ])
         transformers.append(('boolean', boolean_transformer, data_types["boolean"]))
@@ -936,7 +935,7 @@ async def export_model(product_id: int, user_id: str):
         logger.error(traceback.format_exc())
         raise HTTPException(status_code=500, detail=f"Error exporting model: {str(e)}")
 
-@router.post("/import-model/{user_id}")
+@router.post("{user_id}/import-model/")
 async def import_model(user_id: str, file: UploadFile = File(...)):
     """Import a previously exported model"""
     if not user_id:
@@ -1077,13 +1076,13 @@ async def get_feature_importance_visualization(user_id: str, product_id: int):
         }
     }
 
-@router.post("/{user_id}/forecast")
+@router.post("/{user_id}/forecast/")
 async def generate_forecast(
     user_id: str, 
     product_id: int = Query(..., description="Product ID to forecast"),
     start_date: str = Query(..., description="Forecast start date (YYYY-MM-DD)"),
     days: int = Query(30, description="Number of days to forecast"),
-    price: float = Query(None, description="Price to use (optional)"),
+    price: Optional[float] = Query(None, description="Price to use (optional)"),
     promotion_schedule: Optional[str] = Query(None, description="JSON schedule of promotion days")
 ):
     """Generate a future forecast for a product over a period of time"""

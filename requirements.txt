@@ -42,3 +42,8 @@ openpyxl==3.1.5
 databases==0.7.0
 aiosqlite==0.19.0
 
+spacy==3.8.5
+
+textblob==0.19.0
+
+transformers==4.51.3
