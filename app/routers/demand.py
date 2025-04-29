@@ -1011,7 +1011,7 @@ async def import_model(user_id: str, file: UploadFile = File(...)):
             raise e
         raise HTTPException(status_code=500, detail=f"Error importing model: {str(e)}")
 
-@router.get("/download-sample-template")
+@router.get("/download-demand-template")
 async def download_sample_template():
     """Generate a sample CSV template for data upload with additional features"""
     sample_df = pd.DataFrame({
