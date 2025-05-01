@@ -82,7 +82,7 @@ class TextInput(BaseModel):
     include_aspects: bool = Field(False, description="Whether to extract aspect-based sentiment")
 
 class BatchTextInput(BaseModel):
-    texts: List[str] = Field(..., min_items=1, description="List of texts to analyze")
+    texts: List[str] = Field(..., min_length=1, description="List of texts to analyze")
     model: str = Field("vader", description="Model to use for sentiment analysis (vader, transformer, ensemble)")
     include_aspects: bool = Field(False, description="Whether to extract aspect-based sentiment")
 
@@ -595,36 +595,70 @@ async def process_csv_async(job_id: str, file_content: bytes, options: CSVOption
                     analyze_sentiment(text, model=options.model, include_aspects=options.include_aspects)
                 )
             
-            # Extract sentiment scores and other fields
-            batch['sentiment_label'] = [r["sentiment_label"] for r in sentiment_results]
-            batch['negative'] = [r["sentiment"]["neg"] for r in sentiment_results]
-            batch['neutral'] = [r["sentiment"]["neu"] for r in sentiment_results]
-            batch['positive'] = [r["sentiment"]["pos"] for r in sentiment_results]
-            batch['compound'] = [r["sentiment"]["compound"] for r in sentiment_results]
-            batch['confidence'] = [r["confidence"] for r in sentiment_results]
-            batch['language'] = [r["language"] for r in sentiment_results]
-            
-            # Extract emotions
-            batch['joy'] = [r["emotion_analysis"]["joy"] for r in sentiment_results]
-            batch['sadness'] = [r["emotion_analysis"]["sadness"] for r in sentiment_results]
-            batch['anger'] = [r["emotion_analysis"]["anger"] for r in sentiment_results]
-            batch['fear'] = [r["emotion_analysis"]["fear"] for r in sentiment_results]
-            batch['surprise'] = [r["emotion_analysis"]["surprise"] for r in sentiment_results]
+            # Ensure sentiment_results is not empty before extracting fields
+            if sentiment_results:
+                # Extract sentiment scores and other fields
+                batch['sentiment_label'] = [r.get("sentiment_label", "") for r in sentiment_results]
+                batch['negative'] = [r.get("sentiment", {}).get("neg", 0) for r in sentiment_results]
+                batch['neutral'] = [r.get("sentiment", {}).get("neu", 0) for r in sentiment_results]
+                batch['positive'] = [r.get("sentiment", {}).get("pos", 0) for r in sentiment_results]
+                batch['compound'] = [r.get("sentiment", {}).get("compound", 0) for r in sentiment_results]
+                batch['confidence'] = [r.get("confidence", 0) for r in sentiment_results]
+                batch['language'] = [r.get("language", "") for r in sentiment_results]
+                
+                # Extract emotions
+                batch['joy'] = [r.get("emotion_analysis", {}).get("joy", 0) for r in sentiment_results]
+                batch['sadness'] = [r.get("emotion_analysis", {}).get("sadness", 0) for r in sentiment_results]
+                batch['anger'] = [r.get("emotion_analysis", {}).get("anger", 0) for r in sentiment_results]
+                batch['fear'] = [r.get("emotion_analysis", {}).get("fear", 0) for r in sentiment_results]
+                batch['surprise'] = [r.get("emotion_analysis", {}).get("surprise", 0) for r in sentiment_results]
+            else:
+                # If sentiment_results is empty, create empty columns with proper length
+                for column in ['sentiment_label', 'negative', 'neutral', 'positive', 'compound', 'confidence', 'language',
+                               'joy', 'sadness', 'anger', 'fear', 'surprise']:
+                    batch[column] = [None] * len(batch)
             
             # Handle aspects if included
             if options.include_aspects:
-                # Store as JSON string since CSV can't handle nested structures
-                batch['aspects'] = [
-                    json.dumps([{"aspect": a["aspect"], "sentiment": a["sentiment"], "score": a["score"]} 
-                              for a in r.get("aspects", [])]) 
-                    for r in sentiment_results
-                ]
+                # Fixed: Create aspects column with proper length array
+                aspects_json_list = []
+                for r in sentiment_results:
+                    aspects_data = r.get("aspects", [])
+                    # Check if aspects are objects (non-subscriptable) or dictionaries
+                    if aspects_data and hasattr(aspects_data[0], '__dict__'):
+                        # Convert objects to dictionaries using their attributes
+                        aspects_json = json.dumps([
+                            {
+                                "aspect": getattr(a, "aspect", ""),
+                                "sentiment": getattr(a, "sentiment", ""),
+                                "score": getattr(a, "score", 0.0)
+                            }
+                            for a in aspects_data
+                        ])
+                    else:
+                        # Handle the case where aspects are already in dict form
+                        aspects_json = json.dumps([
+                            {
+                                "aspect": a.get("aspect", ""),
+                                "sentiment": a.get("sentiment", ""),
+                                "score": a.get("score", 0.0)
+                            }
+                            for a in aspects_data
+                        ])
+                    aspects_json_list.append(aspects_json)
+                
+                # Assign the complete list to the batch column at once
+                batch['aspects'] = aspects_json_list
             
             result_dfs.append(batch)
             
             processed_rows += len(batch)
             job_store[job_id]["progress"] = processed_rows / total_rows
             
+            # Add error handling for empty batches
+            if len(batch) == 0:
+                continue
+                
             # Small delay to avoid blocking
             await asyncio.sleep(0.01)
         
