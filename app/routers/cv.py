@@ -3,6 +3,7 @@ import re
 import os
 import json
 import logging
+import shutil
 from typing import List, Optional, Dict, Any
 from pathlib import Path
 from datetime import datetime, time
@@ -448,22 +449,40 @@ class CVMatcher:
         )
 
 class Storage:
-    """Class for handling storage of files and data."""
+    """Class for handling storage of files and data with user-specific folders."""
     
     def __init__(self, base_dir: str = "./data"):
         self.base_dir = Path(base_dir)
-        self.jobs_dir = self.base_dir / "jobs"
-        self.cvs_dir = self.base_dir / "cvs"
-        self.results_dir = self.base_dir / "results"
         
-        # Create directories if they don't exist
-        for directory in [self.base_dir, self.jobs_dir, self.cvs_dir, self.results_dir]:
+        # Base directories will be created as needed when a user is set
+        self.current_user_id = None
+        self.user_dir = None
+        self.jobs_dir = None
+        self.cvs_dir = None
+        self.results_dir = None
+    
+    def set_user(self, user_id: str) -> None:
+        """Set current user and initialize their directories with 'cv_' prefix."""
+        self.current_user_id = user_id
+        self.user_dir = self.base_dir / f"cv_{user_id}"
+        self.jobs_dir = self.user_dir / "jobs"
+        self.cvs_dir = self.user_dir / "cvs"
+        self.results_dir = self.user_dir / "results"
+        
+        # Create user's directories if they don't exist
+        for directory in [self.base_dir, self.user_dir, self.jobs_dir, self.cvs_dir, self.results_dir]:
             directory.mkdir(exist_ok=True, parents=True)
+    
+    def _ensure_user_set(self) -> None:
+        """Ensure a user is set before performing operations."""
+        if self.current_user_id is None:
+            raise ValueError("User ID must be set before performing storage operations. Call set_user() first.")
     
     async def save_job_description(self, job_title: str, content: str) -> str:
         """Save job description content to file and return path."""
-        timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
-        file_name = f"{job_title.replace(' ', '_')}_{timestamp}.txt"
+        self._ensure_user_set()
+        
+        file_name = f"{self.current_user_id}.txt"
         file_path = self.jobs_dir / file_name
         
         with open(file_path, 'w', encoding='utf-8') as f:
@@ -473,6 +492,8 @@ class Storage:
     
     async def save_cv(self, file_name: str, content: bytes) -> str:
         """Save CV content to file and return path."""
+        self._ensure_user_set()
+        
         timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
         # Extract file extension and create new name
         _, ext = os.path.splitext(file_name)
@@ -486,21 +507,55 @@ class Storage:
     
     async def save_match_results(self, job_title: str, results: Dict[str, Any]) -> str:
         """Save matching results to JSON file and return path."""
-        timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
-        file_name = f"{job_title.replace(' ', '_')}_results_{timestamp}.json"
+        self._ensure_user_set()
+        
+        file_name = f"results_{self.current_user_id}.json"
         file_path = self.results_dir / file_name
         
         with open(file_path, 'w', encoding='utf-8') as f:
             json.dump(results, f, default=str, indent=2)
         
         return str(file_path)
+    
+    async def cleanup_user_data(self, user_id: Optional[str] = None) -> bool:
+        """Remove a user's folder and all its contents.
+
+        Args:
+            user_id: Optional user ID to cleanup. If None, uses current user.
+            
+        Returns:
+            bool: True if cleanup was successful, False otherwise.
+        """
+        target_user_id = user_id or self.current_user_id
+
+        if not target_user_id:
+            raise ValueError("No user ID specified for cleanup.")
+
+        target_dir = self.base_dir / f"cv_{target_user_id}"
+
+        if target_dir.exists():
+            try:
+                shutil.rmtree(target_dir)
+                # Reset current user attributes if we're removing the current user
+                if target_user_id == self.current_user_id:
+                    self.current_user_id = None
+                    self.user_dir = None
+                    self.jobs_dir = None
+                    self.cvs_dir = None
+                    self.results_dir = None
+                return True
+            except Exception as e:
+                print(f"Error during cleanup: {e}")
+                return False
+        return False
 
 # Initialize storage
 storage = Storage()
 
 # API Endpoints
-@router.post("/upload-job-description/", response_model=Dict[str, Any])
+@router.post("/{user_id}/upload-job-description/", response_model=Dict[str, Any])
 async def upload_job_description(
+    user_id: str,
     job_title: str = Form(...),
     job_description: UploadFile = File(...),
     required_skills: str = Form(...),
@@ -510,6 +565,7 @@ async def upload_job_description(
 ):
     """Upload and store a job description with detailed requirements."""
     try:
+        storage.set_user(user_id)
         job_desc_content = await job_description.read()
         
         # Extract text from PDF
@@ -592,8 +648,9 @@ async def analyze_cv(
             detail=f"Error analyzing CV: {str(e)}"
         )
 
-@router.post("/match-cvs/", response_model=CandidateRanking)
+@router.post("/{user_id}/match-cvs/", response_model=CandidateRanking)
 async def match_cvs(
+    user_id: str,
     background_tasks: BackgroundTasks,
     job_title: str = Form(...),
     job_description_path: str = Form(...),
@@ -605,6 +662,7 @@ async def match_cvs(
 ):
     """Match uploaded CVs against a job description with detailed analysis."""
     try:
+        storage.set_user(user_id)
         # Load the job description
         with open(job_description_path, 'r', encoding='utf-8') as f:
             job_desc_text = f.read()
@@ -646,7 +704,7 @@ async def match_cvs(
             cv_file_names.append(cv_file.filename)
             
             # Save CV file (in a real app, we'd do this asynchronously)
-            background_tasks.add_task(storage.save_cv, cv_file.filename, cv_content)
+            # background_tasks.add_task(storage.save_cv, cv_file.filename, cv_content)
         
         # Calculate similarities between job description and CVs
         similarities = cv_matcher.calculate_similarity(job_desc_text, cv_texts)
@@ -686,11 +744,32 @@ async def match_cvs(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail=f"Error in CV matching process: {str(e)}"
         )
+    
+@router.delete("/{user_id}/erase")
+async def erase_files(user_id:str):
+    try:
+        success = await storage.cleanup_user_data(user_id)
+        if success:
+            return {"status": "deleted successfully"}
+        else:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail="User data not found or could not be deleted."
+            )
+    except Exception as e:
+        logger.error(f"Error Erasing Files: {e}")
+    raise HTTPException(
+        status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+        detail=f"Error retrieving job listings: {str(e)}"
+    )
 
-@router.get("/jobs/", response_model=List[Dict[str, Any]])
-async def list_jobs():
+
+@router.get("/{user_id}/jobs/", response_model=List[Dict[str, Any]])
+async def list_jobs(user_id:str):
     """List all stored job descriptions."""
     try:
+        storage.set_user(user_id)
+
         jobs = []
         for file_path in storage.jobs_dir.glob("*.txt"):
             # Extract job title from filename
@@ -712,10 +791,12 @@ async def list_jobs():
             detail=f"Error retrieving job listings: {str(e)}"
         )
 
-@router.get("/results/", response_model=List[Dict[str, Any]])
-async def list_results():
+@router.get("/{user_id}/results/", response_model=List[Dict[str, Any]])
+async def list_results(user_id: str):
     """List all stored matching results."""
     try:
+        storage.set_user(user_id)
+
         results = []
         for file_path in storage.results_dir.glob("*.json"):
             # Extract job title from filename
@@ -736,10 +817,12 @@ async def list_results():
             detail=f"Error retrieving results: {str(e)}"
         )
 
-@router.get("/result/{result_id}", response_model=CandidateRanking)
-async def get_result(result_id: str):
+@router.get("/{user_id}/result/{result_id}", response_model=CandidateRanking)
+async def get_result(user_id:str, result_id: str):
     """Get a specific matching result by ID."""
     try:
+        storage.set_user(user_id)
+
         file_path = storage.results_dir / f"{result_id}.json"
         
         if not file_path.exists():

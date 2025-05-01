@@ -1,0 +1,29 @@
+Employee Retention Model Report
+==============================
+
+Generated on: 2025-04-30 14:42:28
+
+Model Information:
+- Algorithm: logistic_regression
+- Features: 6
+- Target Variable: leave
+
+Performance Metrics:
+- Accuracy: 0.6600
+- Precision: 0.6316
+- Recall: 0.5455
+- F1: 0.5854
+- Auc: 0.7298
+
+Feature Groups:
+- Numerical Features: ['salary']
+- Categorical Features: ['age', 'years_at_company', 'performance_rating', 'department', 'job_level']
+- Date Features: []
+
+Top Features by Importance:
+1. cat__age_22: 2.0817
+2. cat__age_23: 1.6060
+3. cat__age_24: 1.4373
+4. cat__age_26: 1.0057
+5. cat__age_25: 0.8493
+6. num__salary: 0.3287
