@@ -38,7 +38,7 @@ htmlcov/
 .dmypy.json
 
 # Pydantic / FastAPI-generated files
-*.json
+# *.json
 *.msgpack
 
 # PyInstaller
