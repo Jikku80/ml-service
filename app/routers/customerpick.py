@@ -28,26 +28,26 @@ router = APIRouter(
 # Helper functions for managing user-specific models
 def get_user_model_path(user_id: str):
     """Get the path to the user's model file"""
-    user_dir = f"models/users/{user_id}"
+    user_dir = f"models/customer_pick/{user_id}"
     os.makedirs(user_dir, exist_ok=True)
     return f"{user_dir}/purchase_prediction_model.pkl"
 
 def get_user_feature_info_path(user_id: str):
     """Get the path to the user's feature info file"""
-    user_dir = f"models/users/{user_id}"
+    user_dir = f"models/customer_pick/{user_id}"
     os.makedirs(user_dir, exist_ok=True)
     return f"{user_dir}/feature_info.pkl"
 
 def get_user_training_data_path(user_id: str):
     """Get the path to the user's training data directory"""
-    user_dir = f"data/training_data/{user_id}"
+    user_dir = f"data/customer_pick/training_data/{user_id}"
     os.makedirs(user_dir, exist_ok=True)
     return user_dir
 
 # Ensure base directories exist
 try:
-    os.makedirs("models/users", exist_ok=True)
-    os.makedirs("data/training_data", exist_ok=True)
+    os.makedirs("models/customer_pick", exist_ok=True)
+    os.makedirs("data/customer_pick/training_data", exist_ok=True)
 except PermissionError:
     logger.error("Permission denied when creating directories. Check file system permissions.")
 except Exception as e:
@@ -229,13 +229,6 @@ async def train(
     target_column: str = "purchased",
     test_size: float = 0.2
 ):
-    """
-    Train a new prediction model using the uploaded data for a specific user
-    - user_id: ID of the user
-    - file: CSV or XLSX file with customer data
-    - target_column: Name of the column containing the target variable (1 for purchase, 0 for no purchase)
-    - test_size: Proportion of data to use for testing
-    """
     try:
         logger.info(f"Starting training process for user {user_id}")
         
@@ -402,67 +395,6 @@ async def predict(
         logger.error(f"Unexpected error during prediction: {str(e)}", exc_info=True)
         raise HTTPException(status_code=500, detail=f"Error during prediction: {str(e)}")
 
-@router.post("/{user_id}/batch-predict")
-async def batch_predict(
-    user_id: str = Path(..., description="The ID of the user"),
-    files: List[UploadFile] = File(...)
-):
-    """
-    Make predictions on multiple batches of customer data for a specific user
-    - user_id: ID of the user
-    - files: Multiple CSV or XLSX files with customer data
-    """
-    try:
-        logger.info(f"Starting batch prediction for user {user_id} with {len(files)} files")
-        
-        # Load user-specific model
-        model_pipeline = load_model(user_id)
-        
-        results = []
-        for file in files:
-            try:
-                # Read data
-                df = read_file(file)
-                logger.info(f"Processing file: {file.filename}, shape: {df.shape}")
-                
-                # Handle missing values
-                for col in df.columns:
-                    if df[col].dtype in ['int64', 'float64']:
-                        df[col].fillna(df[col].median(), inplace=True)
-                    else:
-                        df[col].fillna(df[col].mode()[0] if not df[col].mode().empty else "unknown", inplace=True)
-                
-                # Make predictions
-                predictions = model_pipeline.predict(df)
-                probabilities = model_pipeline.predict_proba(df)[:, 1]
-                
-                # Store results
-                results.append({
-                    "filename": file.filename,
-                    "predictions": predictions.tolist(),
-                    "probabilities": probabilities.tolist(),
-                    "summary": {
-                        "total_customers": len(predictions),
-                        "predicted_to_purchase": int(sum(predictions)),
-                        "predicted_not_to_purchase": int(len(predictions) - sum(predictions))
-                    }
-                })
-                logger.info(f"Successfully processed file: {file.filename}")
-            except Exception as e:
-                logger.error(f"Error processing file {file.filename}: {str(e)}")
-                results.append({
-                    "filename": file.filename,
-                    "error": str(e),
-                    "status": "failed"
-                })
-        
-        return {"batch_results": results}
-        
-    except HTTPException:
-        raise
-    except Exception as e:
-        logger.error(f"Unexpected error during batch prediction: {str(e)}", exc_info=True)
-        raise HTTPException(status_code=500, detail=f"Error during batch prediction: {str(e)}")
 
 @router.get("/{user_id}/model-info")
 async def model_info(user_id: str = Path(..., description="The ID of the user")):
@@ -549,12 +481,15 @@ async def model_info(user_id: str = Path(..., description="The ID of the user"))
 
 @router.delete("/{user_id}/model")
 async def delete_model(user_id: str = Path(..., description="The ID of the user")):
-    user_data_dir = os.path.join('./models/users', user_id)
+    user_data_dir = os.path.join('./models/customer_pick', user_id)
+    data_dir = os.path.join('data/customer_pick/training_data', user_id)
     path = os.path.abspath(user_data_dir)
+    datapath = os.path.abspath(data_dir)
 
     if os.path.isdir(path):
         try:
             shutil.rmtree(path)
+            shutil.rmtree(datapath)
             if os.path.exists(path):
                 print("Still exists after rmtree.")
                 raise HTTPException(status_code=500, detail="Directory could not be deleted.")

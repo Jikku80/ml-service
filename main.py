@@ -1,4 +1,4 @@
-from app.routers import segment, churn, trend, pricing, inventory, basket, demand, sentiment, cv, retention, ecom_churn, customerpick, salaryprediction
+from app.routers import segment, churn, trend, pricing, inventory, basket, demand, sentiment, cv, retention, ecom_churn, customerpick, salaryprediction, evaluate
 from app.middleware.auth import verify_api_key, rate_limit_middleware
 from app.core.config import settings
 
@@ -59,3 +59,4 @@ app.include_router(retention.router, dependencies=[Depends(verify_api_key)])
 app.include_router(ecom_churn.router, dependencies=[Depends(verify_api_key)])
 app.include_router(customerpick.router, dependencies=[Depends(verify_api_key)])
 app.include_router(salaryprediction.router, dependencies=[Depends(verify_api_key)])
+app.include_router(evaluate.router, dependencies=[Depends(verify_api_key)])
