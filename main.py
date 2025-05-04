@@ -1,9 +1,13 @@
+import os
+
+from fastapi.responses import FileResponse
 from app.routers import segment, churn, trend, pricing, inventory, basket, demand, sentiment, cv, retention, ecom_churn, customerpick, salaryprediction, evaluate
 from app.middleware.auth import verify_api_key, rate_limit_middleware
 from app.core.config import settings
 
 from fastapi import Depends, FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 from contextlib import asynccontextmanager
 
 import logging
@@ -28,6 +32,17 @@ app = FastAPI(
     description="API for machine learning predictions",
     version="1.0.0",
     lifespan=lifespan)
+
+favicon_path = os.path.join(os.path.dirname(__file__), "static", "favicon.ico")
+app.mount("/static", StaticFiles(directory="static"), name="static")
+
+@app.get("/favicon.ico", include_in_schema=False)
+async def favicon():
+    return FileResponse(favicon_path)
+
+@app.get("/")
+async def root():
+    return {"Hello": "World"}
 
 app.middleware("http")(rate_limit_middleware)
 
