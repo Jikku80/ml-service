@@ -1,7 +1,4 @@
-import os
-
-from fastapi.responses import FileResponse
-from app.routers import segment, churn, trend, pricing, inventory, basket, demand, sentiment, cv, retention, ecom_churn, customerpick, salaryprediction, evaluate
+from app.routers import segment, churn, trend, pricing, inventory, basket, demand, sentiment, cv, retention, ecom_churn, customerpick, salaryprediction, evaluate, imagetoxl, dbconnect
 from app.middleware.auth import verify_api_key, rate_limit_middleware
 from app.core.config import settings
 
@@ -32,13 +29,6 @@ app = FastAPI(
     description="API for machine learning predictions",
     version="1.0.0",
     lifespan=lifespan)
-
-favicon_path = os.path.join(os.path.dirname(__file__), "static", "favicon.ico")
-app.mount("/static", StaticFiles(directory="static"), name="static")
-
-@app.get("/favicon.ico", include_in_schema=False)
-async def favicon():
-    return FileResponse(favicon_path)
 
 @app.get("/")
 async def root():
@@ -75,3 +65,5 @@ app.include_router(ecom_churn.router, dependencies=[Depends(verify_api_key)])
 app.include_router(customerpick.router, dependencies=[Depends(verify_api_key)])
 app.include_router(salaryprediction.router, dependencies=[Depends(verify_api_key)])
 app.include_router(evaluate.router, dependencies=[Depends(verify_api_key)])
+app.include_router(dbconnect.router, dependencies=[Depends(verify_api_key)])
+app.include_router(imagetoxl.router)
