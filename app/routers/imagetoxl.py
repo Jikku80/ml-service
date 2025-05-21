@@ -35,6 +35,10 @@ logging.basicConfig(
 )
 logger = logging.getLogger("image-to-excel-system")
 
+# Suppress PaddleOCR logs below ERROR
+logging.getLogger("ppocr").setLevel(logging.ERROR)
+logging.getLogger("paddleocr").setLevel(logging.ERROR)
+
 # Create the FastAPI app
 router = APIRouter(
     prefix="/imagetoxl",
