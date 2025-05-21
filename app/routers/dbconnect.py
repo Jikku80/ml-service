@@ -655,6 +655,7 @@ async def download_csv_file(
     with open(file_path, "rb") as f:
         content = f.read()
     
+    os.remove(file_path)
     # Return the file as a downloadable response
     return Response(
         content=content,
