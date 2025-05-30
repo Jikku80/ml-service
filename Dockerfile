@@ -22,6 +22,7 @@ COPY requirements.txt .
 
 # Install Python dependencies
 RUN pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir torch==2.6.0 --timeout 120 --retries 10 && \
     pip install --no-cache-dir python-dotenv && \
     pip install --no-cache-dir -r requirements.txt
 
