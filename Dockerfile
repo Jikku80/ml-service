@@ -1,7 +1,7 @@
 FROM python:3.10-slim
 
-# Set working directory to root since main.py is there
-WORKDIR /
+# Set proper working directory
+WORKDIR /app
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -17,34 +17,34 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy requirements and install Python dependencies
+# Copy requirements first for better caching
 COPY requirements.txt .
-RUN pip install --no-cache-dir --upgrade pip
-RUN pip install --no-cache-dir -r requirements.txt
 
-# Install python-dotenv if not in requirements.txt
-RUN pip install --no-cache-dir python-dotenv
+# Install Python dependencies
+RUN pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir python-dotenv && \
+    pip install --no-cache-dir -r requirements.txt
 
-# Copy all application files to root (/)
+# Create directory for models
+RUN mkdir -p /app/models
+
+# Copy application files
 COPY . .
 
-# Create directory for models (under root)
-RUN mkdir -p /models
+# Set environment variables
+ENV ENVIRONMENT=production \
+    LOG_LEVEL=INFO \
+    MAX_REQUESTS_PER_MINUTE=100 \
+    ALLOWED_ORIGINS=http://localhost:3000 \
+    ML_API_KEY=your_secure_api_key_here \
+    PYTHONPATH=/app
 
-# Expose FastAPI port
+# Expose port
 EXPOSE 8080
 
-# Health check
-HEALTHCHECK --interval=3600s --timeout=3600s --start-period=5s --retries=3 \
+# Reasonable health check
+HEALTHCHECK --interval=30s --timeout=30s --start-period=60s --retries=3 \
     CMD curl -f http://localhost:8080/health || exit 1
 
-# Default environment variables
-ENV ENVIRONMENT=production
-ENV LOG_LEVEL=INFO
-ENV MAX_REQUESTS_PER_MINUTE=100
-ENV ALLOWED_ORIGINS=http://localhost:3000
-ENV ML_API_KEY=your_secure_api_key_here
-ENV PYTHONPATH=/
-
-# Start FastAPI app with Uvicorn
+# Start the application
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]
