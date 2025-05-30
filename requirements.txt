@@ -31,7 +31,8 @@ pillow==11.1.0
 jinja2==3.1.6
 
 # PDF handling
-pypdf==5.4.0
+# pypdf==5.4.0
+pypdf
 
 # Database handling
 sqlalchemy==2.0.39
@@ -59,5 +60,7 @@ pdf2image==1.17.0
 pytesseract==0.3.13
 
 pymongo==4.13.0
+
+paddlepaddle-gpu -f https://www.paddlepaddle.org.cn/whl/windows/mkl/avx/stable.html
 
 https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.8.0/en_core_web_sm-3.8.0-py3-none-any.whl
