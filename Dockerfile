@@ -1,49 +1,48 @@
 FROM python:3.10-slim
 
-# Create a non-root user
-# RUN groupadd -r appuser && useradd -r -g appuser appuser
-
 # Set working directory
 WORKDIR /app
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
     gcc \
+    gfortran \
     build-essential \
+    libopenblas-dev \
+    liblapack-dev \
+    tesseract-ocr \
+    libtesseract-dev \
+    poppler-utils \
+    curl \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Python dependencies
 COPY requirements.txt .
+RUN pip install --no-cache-dir --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
+
+# Install python-dotenv if not in requirements.txt
+RUN pip install --no-cache-dir python-dotenv
 
 # Copy application files
 COPY . .
 
-# Add python-dotenv to requirements if not already there
-RUN pip install --no-cache-dir python-dotenv
-
-# Create directory for models if needed
+# Create directory for models
 RUN mkdir -p /app/models
 
-# Change ownership to non-root user
-# RUN chown -R appuser:appuser /app
-
-# Switch to non-root user
-# USER appuser
-
-# Expose the port that FastAPI will run on
+# Expose FastAPI port
 EXPOSE 8000
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
     CMD curl -f http://localhost:8000/health || exit 1
 
-# Default environment variables (can be overridden)
+# Default environment variables
 ENV ENVIRONMENT=production
 ENV LOG_LEVEL=INFO
 ENV MAX_REQUESTS_PER_MINUTE=100
 ENV ALLOWED_ORIGINS=http://localhost:3000
 
-# Run the application
+# Start FastAPI app with Uvicorn
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
