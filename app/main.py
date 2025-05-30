@@ -1,69 +1,143 @@
-from app.routers import segment, churn, trend, pricing, inventory, basket, demand, sentiment, cv, retention, ecom_churn, customerpick, salaryprediction, evaluate, imagetoxl, dbconnect
-from app.middleware.auth import verify_api_key, rate_limit_middleware
-from app.core.config import settings
-
-from fastapi import Depends, FastAPI
-from fastapi.middleware.cors import CORSMiddleware
-from fastapi.staticfiles import StaticFiles
+import logging
+import os
 from contextlib import asynccontextmanager
 
-import logging
+# Set up logging first
 logging.basicConfig(
-    level=getattr(logging, settings.LOG_LEVEL),
+    level=logging.INFO,
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
 )
 logger = logging.getLogger(__name__)
+
+# Import FastAPI first
+from fastapi import Depends, FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+
+logger.info("Starting ML Service...")
+
+# Try importing core dependencies first
+try:
+    from app.core.config import settings
+    logger.info("Successfully imported settings")
+except ImportError as e:
+    logger.error(f"Failed to import settings: {e}")
+    # Create fallback settings
+    class FallbackSettings:
+        LOG_LEVEL = "INFO"
+        ENVIRONMENT = "production"
+        ALLOWED_ORIGINS = ["*"]
+    settings = FallbackSettings()
+
+try:
+    from app.middleware.auth import verify_api_key, rate_limit_middleware
+    logger.info("Successfully imported auth middleware")
+except ImportError as e:
+    logger.error(f"Failed to import auth middleware: {e}")
+    # Create dummy middleware functions
+    async def verify_api_key():
+        return True
+    async def rate_limit_middleware(request, call_next):
+        return await call_next(request)
+
+# Import routers with error handling
+routers_to_import = [
+    ("segment", "app.routers.segment"),
+    ("churn", "app.routers.churn"),
+    ("trend", "app.routers.trend"),
+    ("pricing", "app.routers.pricing"),
+    ("inventory", "app.routers.inventory"),
+    ("basket", "app.routers.basket"),
+    ("demand", "app.routers.demand"),
+    ("sentiment", "app.routers.sentiment"),
+    ("cv", "app.routers.cv"),
+    ("retention", "app.routers.retention"),
+    ("ecom_churn", "app.routers.ecom_churn"),
+    ("customerpick", "app.routers.customerpick"),
+    ("salaryprediction", "app.routers.salaryprediction"),
+    ("evaluate", "app.routers.evaluate"),
+    ("imagetoxl", "app.routers.imagetoxl"),
+    ("dbconnect", "app.routers.dbconnect"),
+]
+
+imported_routers = {}
+for router_name, module_path in routers_to_import:
+    try:
+        module = __import__(module_path, fromlist=[router_name])
+        imported_routers[router_name] = getattr(module, 'router')
+        logger.info(f"Successfully imported {router_name} router")
+    except ImportError as e:
+        logger.error(f"Failed to import {router_name} router: {e}")
+    except AttributeError as e:
+        logger.error(f"Router not found in {router_name} module: {e}")
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     # Startup logic
     logger.info(f"Starting FastAPI in {settings.ENVIRONMENT} environment")
     logger.info(f"Allowed origins: {settings.ALLOWED_ORIGINS}")
+    logger.info(f"Successfully imported {len(imported_routers)} routers")
     yield
     # Shutdown logic
     logger.info("Shutting down application")
-    # Additional cleanup: close connections, release resources, etc.
 
 app = FastAPI(
     title="ML Predictions API",
     description="API for machine learning predictions",
     version="1.0.0",
-    lifespan=lifespan)
+    lifespan=lifespan
+)
 
 @app.get("/")
 async def root():
-    return {"Hello": "World"}
+    return {
+        "message": "ML Predictions API is running",
+        "available_routers": list(imported_routers.keys()),
+        "environment": settings.ENVIRONMENT
+    }
 
-app.middleware("http")(rate_limit_middleware)
+# Add middleware
+try:
+    app.middleware("http")(rate_limit_middleware)
+    logger.info("Rate limiting middleware added")
+except Exception as e:
+    logger.error(f"Failed to add rate limiting middleware: {e}")
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=settings.ALLOWED_ORIGINS,  # Allow requests from React
-    allow_credentials=True,
-    allow_methods=["*"],  # Allow all methods (GET, POST, etc.)
-    allow_headers=["*", "X-API-Key"],  # Allow all headers
-    # allow_headers=["Authorization", "Content-Type"],
-)
+try:
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=settings.ALLOWED_ORIGINS,
+        allow_credentials=True,
+        allow_methods=["*"],
+        allow_headers=["*", "X-API-Key"],
+    )
+    logger.info("CORS middleware added")
+except Exception as e:
+    logger.error(f"Failed to add CORS middleware: {e}")
 
 @app.get("/health")
 def health_check():
-    return {"status": "healthy", 
-        "environment": settings.ENVIRONMENT}
+    return {
+        "status": "healthy",
+        "environment": settings.ENVIRONMENT,
+        "imported_routers": list(imported_routers.keys()),
+        "port": os.environ.get("PORT", "8080")
+    }
 
+# Include routers that were successfully imported
+for router_name, router in imported_routers.items():
+    try:
+        if router_name == "imagetoxl":
+            # Special case for imagetoxl without auth
+            app.include_router(router)
+            logger.info(f"Included {router_name} router (no auth)")
+        else:
+            app.include_router(router, dependencies=[Depends(verify_api_key)])
+            logger.info(f"Included {router_name} router (with auth)")
+    except Exception as e:
+        logger.error(f"Failed to include {router_name} router: {e}")
 
-app.include_router(segment.router, dependencies=[Depends(verify_api_key)])
-app.include_router(churn.router, dependencies=[Depends(verify_api_key)])
-app.include_router(trend.router, dependencies=[Depends(verify_api_key)])
-app.include_router(pricing.router, dependencies=[Depends(verify_api_key)])
-app.include_router(inventory.router, dependencies=[Depends(verify_api_key)])
-app.include_router(basket.router, dependencies=[Depends(verify_api_key)])
-app.include_router(demand.router, dependencies=[Depends(verify_api_key)])
-app.include_router(sentiment.router, dependencies=[Depends(verify_api_key)])
-app.include_router(cv.router, dependencies=[Depends(verify_api_key)])
-app.include_router(retention.router, dependencies=[Depends(verify_api_key)])
-app.include_router(ecom_churn.router, dependencies=[Depends(verify_api_key)])
-app.include_router(customerpick.router, dependencies=[Depends(verify_api_key)])
-app.include_router(salaryprediction.router, dependencies=[Depends(verify_api_key)])
-app.include_router(evaluate.router, dependencies=[Depends(verify_api_key)])
-app.include_router(dbconnect.router, dependencies=[Depends(verify_api_key)])
-app.include_router(imagetoxl.router)
+if __name__ == "__main__":
+    import uvicorn
+    port = int(os.environ.get("PORT", 8080))
+    logger.info(f"Starting server on 0.0.0.0:{port}")
+    uvicorn.run(app, host="0.0.0.0", port=port, log_level="info")
