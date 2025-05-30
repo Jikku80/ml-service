@@ -62,6 +62,7 @@ pytesseract==0.3.13
 
 pymongo==4.13.0
 
-paddlepaddle-gpu -f https://www.paddlepaddle.org.cn/whl/windows/mkl/avx/stable.html
+# paddlepaddle-gpu -f https://www.paddlepaddle.org.cn/whl/windows/mkl/avx/stable.html
+paddlepaddle -f https://www.paddlepaddle.org.cn/whl/mkl/avx/stable.html
 
 https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.8.0/en_core_web_sm-3.8.0-py3-none-any.whl

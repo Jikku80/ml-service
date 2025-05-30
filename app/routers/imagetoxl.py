@@ -46,7 +46,7 @@ router = APIRouter(
     responses={404: {"description": "Not found"}},
 )
 
-pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
+# pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 
 # Create directories for storing files
 BASE_DIR = FilePath("./storage")
