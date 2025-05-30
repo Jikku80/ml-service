@@ -1,7 +1,7 @@
 FROM python:3.10-slim
 
-# Set working directory
-WORKDIR /app
+# Set working directory to root since main.py is there
+WORKDIR /
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -17,7 +17,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# Install Python dependencies
+# Copy requirements and install Python dependencies
 COPY requirements.txt .
 RUN pip install --no-cache-dir --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
@@ -25,11 +25,11 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Install python-dotenv if not in requirements.txt
 RUN pip install --no-cache-dir python-dotenv
 
-# Copy application files
+# Copy all application files to root (/)
 COPY . .
 
-# Create directory for models
-RUN mkdir -p /app/models
+# Create directory for models (under root)
+RUN mkdir -p /models
 
 # Expose FastAPI port
 EXPOSE 8080
@@ -44,8 +44,7 @@ ENV LOG_LEVEL=INFO
 ENV MAX_REQUESTS_PER_MINUTE=100
 ENV ALLOWED_ORIGINS=http://localhost:3000
 ENV ML_API_KEY=your_secure_api_key_here
-ENV PYTHONPATH=/app
-
+ENV PYTHONPATH=/
 
 # Start FastAPI app with Uvicorn
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]
