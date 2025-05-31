@@ -1,6 +1,7 @@
 from datetime import datetime
 from typing import Optional
 import uuid
+import os
 from fastapi import APIRouter, File, Form, UploadFile
 import pandas as pd
 
@@ -11,9 +12,18 @@ router = APIRouter(
     tags=["segment"],
     responses={404: {"description": "Not found"}},
 )
+
+# Create uploaded_files directory if it doesn't exist
+UPLOAD_DIR = "uploaded_files"
+if not os.path.exists(UPLOAD_DIR):
+    os.makedirs(UPLOAD_DIR)
     
 @router.post("/")
 async def segment(customerID: Optional[str] = Form(None), invoiceNo: Optional[str] = Form(None), invoiceDate: Optional[str] = Form(None), unitPrice: Optional[str] = Form(None), quantity: Optional[str] = Form(None), file: UploadFile = File(...)):
+    # Ensure upload directory exists (additional safety check)
+    if not os.path.exists(UPLOAD_DIR):
+        os.makedirs(UPLOAD_DIR)
+    
     # Get file details
     original_filename = file.filename
     file_extension = original_filename.split('.')[-1]
@@ -22,16 +32,18 @@ async def segment(customerID: Optional[str] = Form(None), invoiceNo: Optional[st
 
     file_content = await file.read()  # This will read the content of the file
 
-    # Example: Save the file locally (optional)
-    with open(f"uploaded_files/{filename}", "wb") as f:
+    # Save the file locally with proper path handling
+    file_path = os.path.join(UPLOAD_DIR, filename)
+    with open(file_path, "wb") as f:
         f.write(file_content)
+    
     # Create segmentation system
     rfm_system = RFMSegmentationSystem()
 
     # From CSV
-    rfm_system.load_data(file_path=f"uploaded_files/{filename}", invoiceDate=invoiceDate)
+    rfm_system.load_data(file_path=file_path, invoiceDate=invoiceDate)
 
-    rfm_system.generate_sample_data(customerId=customerID, invoiceNo=invoiceNo, invoiceDate=invoiceDate, unitPrice=unitPrice, quantity=quantity, filepath=f"uploaded_files/{filename}")
+    rfm_system.generate_sample_data(customerId=customerID, invoiceNo=invoiceNo, invoiceDate=invoiceDate, unitPrice=unitPrice, quantity=quantity, filepath=file_path)
 
     rfm_system.perform_segmentation()
 
@@ -62,7 +74,7 @@ async def segment(customerID: Optional[str] = Form(None), invoiceNo: Optional[st
     results = rfm_system.export_segments()
     sample_df = pd.DataFrame(results)
 
-    file_path = f"uploaded_files/{filename}"
+    # Clean up the uploaded file
     rfm_system.remove_file(file_path)
 
     return {"plan": marketing_plan, "summary": summary, "chart": chart, "columns": list(sample_df.columns), "sample_rows": sample_df.to_dict(orient='records')}
