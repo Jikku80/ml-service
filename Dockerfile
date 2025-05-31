@@ -13,6 +13,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     tesseract-ocr \
     libtesseract-dev \
     poppler-utils \
+    libgl1 \
     curl \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
@@ -37,7 +38,6 @@ ENV ENVIRONMENT=production \
     LOG_LEVEL=INFO \
     MAX_REQUESTS_PER_MINUTE=100 \
     ALLOWED_ORIGINS=http://localhost:3000 \
-    ML_API_KEY=your_secure_api_key_here \
     PYTHONPATH=/app
 
 # Expose port
@@ -48,4 +48,4 @@ HEALTHCHECK --interval=30s --timeout=30s --start-period=60s --retries=3 \
     CMD curl -f http://localhost:8080/health || exit 1
 
 # Start the application
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8080"]
