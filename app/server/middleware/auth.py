@@ -5,7 +5,7 @@ from fastapi.security import APIKeyHeader
 from fastapi.responses import JSONResponse
 from starlette.status import HTTP_403_FORBIDDEN
 
-from app.core.config import settings
+from server.core.config import settings
 
 # Define the API key header
 API_KEY_NAME = "X-API-Key"

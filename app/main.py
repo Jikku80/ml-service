@@ -17,7 +17,7 @@ logger.info("Starting ML Service...")
 
 # Try importing core dependencies first
 try:
-    from app.core.config import settings
+    from server.core.config import settings
     logger.info("Successfully imported settings")
 except ImportError as e:
     logger.error(f"Failed to import settings: {e}")
@@ -29,7 +29,7 @@ except ImportError as e:
     settings = FallbackSettings()
 
 try:
-    from app.middleware.auth import verify_api_key, rate_limit_middleware
+    from server.middleware.auth import verify_api_key, rate_limit_middleware
     logger.info("Successfully imported auth middleware")
 except ImportError as e:
     logger.error(f"Failed to import auth middleware: {e}")
@@ -41,22 +41,22 @@ except ImportError as e:
 
 # Import routers with error handling
 routers_to_import = [
-    ("segment", "app.routers.segment"),
-    ("churn", "app.routers.churn"),
-    ("trend", "app.routers.trend"),
-    ("pricing", "app.routers.pricing"),
-    ("inventory", "app.routers.inventory"),
-    ("basket", "app.routers.basket"),
-    ("demand", "app.routers.demand"),
-    ("sentiment", "app.routers.sentiment"),
-    ("cv", "app.routers.cv"),
-    ("retention", "app.routers.retention"),
-    ("ecom_churn", "app.routers.ecom_churn"),
-    ("customerpick", "app.routers.customerpick"),
-    ("salaryprediction", "app.routers.salaryprediction"),
-    ("evaluate", "app.routers.evaluate"),
-    ("imagetoxl", "app.routers.imagetoxl"),
-    ("dbconnect", "app.routers.dbconnect"),
+    ("segment", "server.routers.segment"),
+    ("churn", "server.routers.churn"),
+    ("trend", "server.routers.trend"),
+    ("pricing", "server.routers.pricing"),
+    ("inventory", "server.routers.inventory"),
+    ("basket", "server.routers.basket"),
+    ("demand", "server.routers.demand"),
+    ("sentiment", "server.routers.sentiment"),
+    ("cv", "server.routers.cv"),
+    ("retention", "server.routers.retention"),
+    ("ecom_churn", "server.routers.ecom_churn"),
+    ("customerpick", "server.routers.customerpick"),
+    ("salaryprediction", "server.routers.salaryprediction"),
+    ("evaluate", "server.routers.evaluate"),
+    ("imagetoxl", "server.routers.imagetoxl"),
+    ("dbconnect", "server.routers.dbconnect"),
 ]
 
 imported_routers = {}
