@@ -20,7 +20,7 @@ class Settings(BaseModel):
     MAX_REQUESTS_PER_MINUTE: int = int(os.environ.get("MAX_REQUESTS_PER_MINUTE", "100"))
     
     # CORS Settings
-    ALLOWED_ORIGINS: list = os.environ.get("ALLOWED_ORIGINS", "http://localhost:3000").split(",")
+    ALLOWED_ORIGINS: list = os.environ.get("ALLOWED_ORIGINS", "https://server-jantra-808666915194.asia-south2.run.app").split(",")
     
     # Database Settings (if applicable)
     DB_URL: str = os.environ.get("DB_URL", "")
