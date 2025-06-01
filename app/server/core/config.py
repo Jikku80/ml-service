@@ -9,21 +9,21 @@ load_dotenv()
 class Settings(BaseModel):
     """Application settings."""
     # API Settings
-    API_KEY: str = os.environ.get("ML_API_KEY", "")
-    ENVIRONMENT: str = os.environ.get("ENVIRONMENT", "development")
+    API_KEY: str = os.environ.get("ML_API_KEY")
+    ENVIRONMENT: str = os.environ.get("ENVIRONMENT")
     
     # Model Settings
-    MODEL_PATH: str = os.environ.get("MODEL_PATH", "./models")
+    MODEL_PATH: str = os.environ.get("MODEL_PATH")
     
     # Service Settings
-    LOG_LEVEL: str = os.environ.get("LOG_LEVEL", "INFO")
-    MAX_REQUESTS_PER_MINUTE: int = int(os.environ.get("MAX_REQUESTS_PER_MINUTE", "100"))
+    LOG_LEVEL: str = os.environ.get("LOG_LEVEL")
+    MAX_REQUESTS_PER_MINUTE: int = int(os.environ.get("MAX_REQUESTS_PER_MINUTE"))
     
     # CORS Settings
-    ALLOWED_ORIGINS: list = os.environ.get("ALLOWED_ORIGINS", "https://server-jantra-808666915194.asia-south2.run.app,https://www.jwantra.com,https://jwantra.com,http://localhost:3000").split(",")
+    ALLOWED_ORIGINS: list = os.environ.get("ALLOWED_ORIGINS")
     
     # Database Settings (if applicable)
-    DB_URL: str = os.environ.get("DB_URL", "")
+    DB_URL: str = os.environ.get("DB_URL")
     
     model_config = {
         "env_file": ".env",
