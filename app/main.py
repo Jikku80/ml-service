@@ -125,9 +125,10 @@ routers_to_import = [
     ("ecom_churn", "server.routers.ecom_churn"),
     ("customerpick", "server.routers.customerpick"),
     ("salaryprediction", "server.routers.salaryprediction"),
-    ("evaluate", "server.routers.evaluate"),
+    ("supply", "server.routers.supply"),
     ("imagetoxl", "server.routers.imagetoxl"),
     ("dbconnect", "server.routers.dbconnect"),
+    ("anamoly", "server.routers.anamoly"),
 ]
 
 imported_routers = {}

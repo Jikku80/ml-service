@@ -1,0 +1,47 @@
+{
+  "user_id": "6801353cac41781bce123181",
+  "model_path": "models/6801353cac41781bce123181_employee_retention_model.pkl",
+  "features": [
+    "salary",
+    "age",
+    "years_at_company",
+    "performance_rating",
+    "department",
+    "job_level"
+  ],
+  "target": "leave",
+  "categorical_features": [
+    "age",
+    "years_at_company",
+    "performance_rating",
+    "department",
+    "job_level"
+  ],
+  "numerical_features": [
+    "salary"
+  ],
+  "date_features": [],
+  "ordinal_features": {},
+  "metrics": {
+    "accuracy": 0.66,
+    "precision": 0.631578947368421,
+    "recall": 0.5454545454545454,
+    "f1": 0.5853658536585366,
+    "auc": 0.7298092532467533
+  },
+  "feature_importance": {
+    "num__salary": 0.3287224512224955,
+    "cat__age_22": 2.081777086487719,
+    "cat__age_23": 1.6060784181140224,
+    "cat__age_24": 1.437196777580857,
+    "cat__age_25": 0.849403509542423,
+    "cat__age_26": 1.0055346830117793
+  },
+  "timestamp": 1748934381.1747856,
+  "selected_algorithm": "logistic_regression",
+  "preprocessing_steps": {
+    "numerical": "KNNImputer + RobustScaler",
+    "categorical": "MostFrequent + OneHotEncoder",
+    "date": "None"
+  }
+}

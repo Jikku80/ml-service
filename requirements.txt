@@ -61,6 +61,10 @@ pdf2image==1.17.0
 pytesseract==0.3.13
 
 pymongo==4.13.0
+psycopg2-binary
+pymysql
+
+
 
 # paddlepaddle-gpu -f https://www.paddlepaddle.org.cn/whl/windows/mkl/avx/stable.html
 paddlepaddle -f https://www.paddlepaddle.org.cn/whl/mkl/avx/stable.html

@@ -166,21 +166,6 @@ async def analyze_basket(
     handle_missing: bool = Form(True),
     imputation_strategy: str = Form("auto")
 ):
-    """
-    Perform market basket analysis on uploaded transaction data with smart data preprocessing
-    
-    - **file**: CSV or XLSX file containing transaction data
-    - **transaction_col**: Column name for transaction identifiers (if None, will be auto-detected)
-    - **item_col**: Column name for item identifiers (if None, will be auto-detected)
-    - **date_col**: Optional column name for transaction dates (for temporal analysis)
-    - **min_support**: Minimum support threshold for frequent itemsets (0-1)
-    - **min_threshold**: Minimum threshold for association rules (0-1)
-    - **metric**: Metric to evaluate rules ('support', 'confidence', 'lift', 'leverage', 'conviction')
-    - **algorithm**: Algorithm to use ('apriori', 'fpgrowth', or 'auto')
-    - **max_items**: Maximum number of items in an itemset
-    - **handle_missing**: Whether to automatically handle missing values
-    - **imputation_strategy**: Strategy for missing value imputation ('auto', 'simple', 'advanced', or 'none')
-    """
     try:
         processing_info = {}
         
@@ -416,7 +401,6 @@ async def analyze_basket(
                 {"period": str(period), "transaction_count": int(count)} 
                 for period, count in zip(temporal_trends['period'], temporal_trends['transaction_count'])
             ]
-        
         return {
             "frequent_itemsets": frequent_itemsets_result,
             "association_rules": rules_result,
