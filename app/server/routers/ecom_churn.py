@@ -2,6 +2,7 @@ import os
 import shutil
 from typing import Any, Dict, List, Optional
 from fastapi import APIRouter, File, Form, HTTPException, UploadFile
+from fastapi.responses import JSONResponse
 from fastapi.templating import Jinja2Templates
 import pandas as pd
 from pydantic import BaseModel
@@ -59,6 +60,16 @@ class TrainingResult(BaseModel):
     metrics: Dict[str, float]
     confusion_matrix: List[List[int]]
     feature_importance: Optional[List[Dict[str, Any]]] = None
+
+
+@router.get('/{user_id}/model_info')
+async def get_model(user_id: str):
+    file_path = f"models/{user_id}_ecom.pkl"
+    exists = os.path.exists(file_path)
+
+    response = {"exists": "yes" if exists else "no"}
+
+    return JSONResponse(content=response)
 
 @router.post("/{user_id}/predict", response_model=PredictionResult)
 async def predict(customer_data: CustomerData, user_id: str):

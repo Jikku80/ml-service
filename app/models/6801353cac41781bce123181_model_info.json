@@ -30,14 +30,14 @@
     "auc": 0.7298092532467533
   },
   "feature_importance": {
-    "num__salary": 0.3287224512224955,
-    "cat__age_22": 2.081777086487719,
-    "cat__age_23": 1.6060784181140224,
-    "cat__age_24": 1.437196777580857,
-    "cat__age_25": 0.849403509542423,
-    "cat__age_26": 1.0055346830117793
+    "num__salary": 0.3286772010018286,
+    "cat__age_22": 2.081837261929793,
+    "cat__age_23": 1.6061618445068289,
+    "cat__age_24": 1.4371753034299268,
+    "cat__age_25": 0.8493652630747255,
+    "cat__age_26": 1.0055201707447905
   },
-  "timestamp": 1748934381.1747856,
+  "timestamp": 1750157398.4931862,
   "selected_algorithm": "logistic_regression",
   "preprocessing_steps": {
     "numerical": "KNNImputer + RobustScaler",

@@ -2,6 +2,7 @@ import os
 import shutil
 from typing import Any, Dict, List, Optional
 from fastapi import APIRouter, File, Form, HTTPException, UploadFile
+from fastapi.responses import JSONResponse
 from fastapi.templating import Jinja2Templates
 import pandas as pd
 from pydantic import BaseModel
@@ -88,6 +89,15 @@ async def predict(customer_data: CustomerData, user_id: str):
     
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
+
+@router.get('/{user_id}/model_info')
+async def get_model(user_id: str):
+    file_path = f"models/{user_id}.pkl"
+    exists = os.path.exists(file_path)
+
+    response = {"exists": "yes" if exists else "no"}
+
+    return JSONResponse(content=response)
 
 @router.post("/{user_id}/batch-predict", response_model=BatchPredictionResult)
 async def batch_predict(file: UploadFile = File(...), user_id: str = None):
