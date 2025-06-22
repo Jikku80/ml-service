@@ -1,6 +1,0 @@
-﻿Error in PaddleOCR extraction,"(PreconditionNotMet) The third-party dynamic library (cudnn64_8.dll) that Paddle depends on is not configured correctly. (error code is 126)
-  Suggestions:
-  1. Check if the third-party dynamic library (e.g. CUDA, CUDNN) is installed correctly and its version is matched with paddlepaddle you installed.
-  2. Configure third-party dynamic library environment variables as follows:
-  - Linux: set LD_LIBRARY_PATH by `export LD_LIBRARY_PATH=...`
-  - Windows: set PATH by `set PATH=XXX; (at ..\paddle\phi\backends\dynload\dynamic_loader.cc:312)"
