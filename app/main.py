@@ -126,7 +126,7 @@ routers_to_import = [
     ("customerpick", "server.routers.customerpick"),
     ("salaryprediction", "server.routers.salaryprediction"),
     ("supply", "server.routers.supply"),
-    ("imagetoxl", "server.routers.imagetoxl"),
+    # ("imagetoxl", "server.routers.imagetoxl"),
     ("dbconnect", "server.routers.dbconnect"),
     ("anamoly", "server.routers.anamoly"),
 ]
@@ -251,7 +251,7 @@ for router_name, router in imported_routers.items():
     try:
         if router_name == "imagetoxl":
             # Special case for imagetoxl without auth
-            app.include_router(router)
+            # app.include_router(router)
             logger.info(f"✓ Included {router_name} router (no auth)")
         else:
             app.include_router(router, dependencies=[Depends(verify_api_key)])
